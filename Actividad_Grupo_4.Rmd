@@ -1,0 +1,8 @@
+---
+title: "Actividad Grupo 4 - Análisis Series de Tiempo"
+author: "Andrés Monsalve, Luz Angélica Norato y Willy Corzo"
+date: "2024-10-13"
+output: html_document
+---
+
+
