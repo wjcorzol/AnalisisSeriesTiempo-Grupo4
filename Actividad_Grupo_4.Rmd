@@ -29,10 +29,10 @@ Inicialmente, la base de datos incluye un total de 475 ítems. Sin embargo, tras
 
 ```{r comment=NA}
 #leer datos
-data <- read.csv("All_80.csv",header = TRUE, sep = ";")
+data <- read.csv("Ventas_t.csv",header = TRUE, sep = ";")
 
-# Quitar el prefijo 'X' de los nombres de las columnas
-names(data) <- gsub("^X", "", names(data))
+data$Fecha <- as.Date(data$Fecha, format = "%d/%m/%Y")
+
 
 head(data)
 ```
@@ -42,3 +42,28 @@ El propósito de trabajar con esta base de datos es llevar a cabo predicciones d
 Un desafío significativo que presenta nuestra base de datos es la elevada cantidad de ceros, dado que la empresa se enfoca principalmente en la venta a mayoristas, lo que significa que no todos los ítems generan ventas de forma semanal. Este aspecto deberá ser considerado al aplicar técnicas de análisis de series de tiempo, ya que puede afectar la precisión de los modelos predictivos.
 
 A través de este análisis, se busca no solo comprender mejor las dinámicas de ventas de la empresa, sino también desarrollar habilidades en el manejo y la interpretación de series temporales en un contexto práctico.
+
+# Actividad 2 - Estructura de los datos en series de tiempo
+
+Para el desarrollo de la actividad se continuara trabajando con la base de datos ya presentada anteriormente, sera necesario realizar agrupaciones por categorias de items ya que muchos de los items en la base de datos no poseen registros en todos los periodo de tiempo evaluado.
+
+## Grupo 1 -  AVR 
+
+Dentro de la base de datos se identificaron como AVR los siguientes los items 10, 26, 30, 45, 49, 55, 62, 66 y 79.
+
+A continuacion se procede a realizar un subgrupo con estos items particulares.
+
+```{r}
+AVR = data%>% select(`Fecha`, `Item.10`, `Item.26`, `Item.30`, `Item.39`, `Item.45`, `Item.49`,
+                       `Item.55`, `Item.62`, `Item.66`, `Item.79`)
+
+AVR = AVR%>% mutate(Total = rowSums(select(.,`Item.10`, `Item.26`, `Item.30`, `Item.39`, `Item.45`, `Item.49`,
+                       `Item.55`, `Item.62`, `Item.66`, `Item.79`), na.rm = TRUE))
+
+head(AVR)
+```
+
+
+
+
+
