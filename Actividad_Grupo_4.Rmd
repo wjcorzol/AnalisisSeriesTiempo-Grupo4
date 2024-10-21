@@ -378,7 +378,7 @@ lag.plot(Storage_Battery_ts, 12, main = "Rezago Storage Battery", do.lines = FAL
  ggAcf(Storage_Battery_ts)
 
 ```
-
+### Estacionalidad
 ```{r}
 seasonplot(AVR_ts,  
            col = rainbow(4), 
