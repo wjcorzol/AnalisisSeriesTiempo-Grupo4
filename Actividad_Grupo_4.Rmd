@@ -15,17 +15,27 @@ output:
 #install.packages("tseries")
 #install.packages("bookdown")
 #install.packages("xlsx")
+#install.packages("forecast")
 library(tseries)
 library(bookdown)
 library(xlsx)
 library(dplyr)
+library(skimr)
+library(ggplot2)
+library(forecast)
 ```
 
+<br>
+
 # Actividad 1 - Descripción de la Base de Datos
+
+<br>
 
 La base de datos que tenemos disponible contiene información detallada sobre las ventas de una empresa dedicada a la comercialización de dispositivos de almacenamiento de energía. Este conjunto de datos abarca un periodo de 175 semanas, desde enero de 2021 hasta mayo de 2024. Contamos con la autorización de la empresa para utilizar esta base de datos exclusivamente con fines académicos.
 
 Inicialmente, la base de datos incluye un total de 475 ítems. Sin embargo, tras realizar un análisis exhaustivo, hemos decidido concentrarnos en los primeros 80 ítems, ya que estos representan el 90.24% de las ventas totales registradas en el año 2023. Además, la base de datos proporciona información sobre siete puntos de acogida de inventario de la empresa, pero para los objetivos de esta clase, nos limitaremos a utilizar únicamente el total de las ventas.
+
+<br>
 
 ```{r comment=NA}
 #leer datos
@@ -37,33 +47,357 @@ data$Fecha <- as.Date(data$Fecha, format = "%d/%m/%Y")
 head(data)
 ```
 
+<br>
+
 El propósito de trabajar con esta base de datos es llevar a cabo predicciones de ventas, considerando diversos factores temporales. Esto implica un análisis de patrones estacionales, tendencias históricas y otros elementos temporales que pueden influir en el comportamiento de las ventas.
 
 Un desafío significativo que presenta nuestra base de datos es la elevada cantidad de ceros, dado que la empresa se enfoca principalmente en la venta a mayoristas, lo que significa que no todos los ítems generan ventas de forma semanal. Este aspecto deberá ser considerado al aplicar técnicas de análisis de series de tiempo, ya que puede afectar la precisión de los modelos predictivos.
 
 A través de este análisis, se busca no solo comprender mejor las dinámicas de ventas de la empresa, sino también desarrollar habilidades en el manejo y la interpretación de series temporales en un contexto práctico.
 
+<br>
+
 # Actividad 2 - Estructura de los datos en series de tiempo
 
-Para el desarrollo de la actividad se continuara trabajando con la base de datos ya presentada anteriormente, sera necesario realizar agrupaciones por categorias de items ya que muchos de los items en la base de datos no poseen registros en todos los periodo de tiempo evaluado.
+<br>
 
-## Grupo 1 -  AVR 
-
-Dentro de la base de datos se identificaron como AVR los siguientes los items 10, 26, 30, 45, 49, 55, 62, 66 y 79.
-
-A continuacion se procede a realizar un subgrupo con estos items particulares.
+## Entendimiento de los Datos
 
 ```{r}
-AVR = data%>% select(`Fecha`, `Item.10`, `Item.26`, `Item.30`, `Item.39`, `Item.45`, `Item.49`,
-                       `Item.55`, `Item.62`, `Item.66`, `Item.79`)
-
-AVR = AVR%>% mutate(Total = rowSums(select(.,`Item.10`, `Item.26`, `Item.30`, `Item.39`, `Item.45`, `Item.49`,
-                       `Item.55`, `Item.62`, `Item.66`, `Item.79`), na.rm = TRUE))
-
-head(AVR)
+skim(data)
 ```
 
+<br>
 
+Al analizar los estadísticos presentados se puede entender que:
 
+1.  No existen registros faltantes dentro del data set
+2.  Existen items con una gran cantidad de registros en 0, se debe pensar en agrupar items por categorías o características similares
+3.  Dentro de la base de datos se encuentran registros negativos que obedecen a las devoluciones
 
+## Preparación de los Datos
+
+<br>
+
+Como se menciono anteriormente sera necesario realizar algunos procedimisntos previos antes de comenzar a realizar analisis, dentro de los procedimientos sera necesario realizar una limpieza o imputacion de datos y crear agrupaciones por categorias de items.
+
+Dentro del dataset se encuentran registros negativos que corresponden a devoluciones de productos, nos centraremos en las ventas por lo tanto estos datos seran imputados con ceros por ser considerados anomalos.
+
+<br>
+
+```{r}
+#Imputacion de datos negativos que corresponden a devoluciones
+
+ventas = data
+ventas[ventas < 0] = 0
+ventas
+```
+
+<br>
+
+Para la agrupación de los datos se identificarán las categorías de los ítems
+
+**Grupo AVR:** Los siguientes Items se identifican como AVR
+
+| **AVR** |         |         |         |
+|:-------:|:-------:|:-------:|:-------:|
+| Item.10 | Item.26 | Item.30 | Item.45 |
+| Item.49 | Item.55 | Item.62 | Item.66 |
+| Item.79 |         |         |         |
+
+<br>
+
+```{r}
+AVR = ventas%>% select(`Fecha`, `Item.10`, `Item.26`, `Item.30`, `Item.39`, `Item.45`, `Item.49`,
+                       `Item.55`, `Item.62`, `Item.66`, `Item.79`)
+
+AVR = AVR%>% mutate(Total_AVR = rowSums(select(.,`Item.10`, `Item.26`, `Item.30`, `Item.39`, `Item.45`, `Item.49`,
+                       `Item.55`, `Item.62`, `Item.66`, `Item.79`), na.rm = TRUE))
+
+```
+
+<br>
+
+**Grupo Data Center:** Dentro de la base de datos solo se identifica como Data Center el Item 53
+
+| **Data_Center** |
+|:---------------:|
+|     Item.53     |
+
+<br>
+
+```{r}
+Data_Center = ventas%>% select(`Fecha`, `Item.53`)
+Data_Center = Data_Center%>% mutate(Total_Data_Center = rowSums(select(.,`Item.53`), na.rm = TRUE))
+```
+
+<br>
+
+**Grupo Line UPS:** Los siguientes Items son identificados como line UPS
+
+| **Line UPS** |         |         |         |
+|:------------:|:-------:|:-------:|:-------:|
+|    Item.1    | Item.2  | Item.3  | Item.6  |
+|    Item.9    | Item.15 | Item.59 | Item.63 |
+|   Item.68    | Item.70 | Item.71 | Item.75 |
+
+<br>
+
+```{r}
+Line_UPS = ventas%>% select(`Fecha`, `Item.1`, `Item.2`, `Item.3`, `Item.6`, `Item.9`, 
+                            `Item.15`, `Item.17`, `Item.22`, `Item.34`, `Item.48`, 
+                            `Item.51`, `Item.59`, `Item.63`, `Item.68`, `Item.70`,
+                            `Item.71`, `Item.75`)
+
+Line_UPS = Line_UPS%>% mutate(Total_Line_UPS = rowSums(select(.,`Item.1`, `Item.2`, `Item.3`, `Item.6`, `Item.9`, 
+                            `Item.15`, `Item.17`, `Item.22`, `Item.34`, `Item.48`, 
+                            `Item.51`, `Item.59`, `Item.63`, `Item.68`, `Item.70`,
+                            `Item.71`, `Item.75`), na.rm = TRUE))
+
+```
+
+<br>
+
+**Grupo Online UPS:** Los siguientes Items son identificados como Online UPS
+
+| **Online UPS** |         |         |         |
+|:--------------:|:-------:|:-------:|:-------:|
+|     Item.4     | Item.5  | Item.7  | Item.8  |
+|    Item.12     | Item.13 | Item.14 | Item.16 |
+|    Item.19     | Item.20 | Item.21 | Item.23 |
+|    Item.25     | Item.27 | Item.28 | Item.29 |
+|    Item.31     | Item.32 | Item.33 | Item.38 |
+|    Item.41     | Item.43 | Item.44 | Item.46 |
+|    Item.50     | Item.56 | Item.57 | Item.58 |
+|    Item.60     | Item.65 | Item.72 | Item.76 |
+|    Item.77     | Item.80 |         |         |
+
+<br>
+
+```{r}
+Online_UPS = ventas%>% select(`Fecha`, `Item.4`, `Item.5`, `Item.7`, `Item.8`, `Item.12`, 
+                            `Item.13`, `Item.14`, `Item.16`, `Item.19`, `Item.20`, 
+                            `Item.21`, `Item.23`, `Item.25`, `Item.27`, `Item.28`,
+                            `Item.29`, `Item.31`, `Item.32`, `Item.33`, `Item.38`, `Item.41`, 
+                            `Item.43`, `Item.44`, `Item.46`, `Item.50`, `Item.56`, `Item.57`, 
+                            `Item.58`, `Item.60`, `Item.65`, `Item.72`, `Item.76`, `Item.77`, 
+                            `Item.80`)
+
+Online_UPS = Online_UPS%>% mutate(Total_Online_UPS = rowSums(select(.,`Item.4`, `Item.5`, `Item.7`, `Item.8`,                              `Item.12`,`Item.13`, `Item.14`, `Item.16`, `Item.19`, `Item.20`, 
+                            `Item.21`, `Item.23`, `Item.25`, `Item.27`, `Item.28`,
+                            `Item.29`, `Item.31`, `Item.32`, `Item.33`, `Item.38`, `Item.41`, 
+                            `Item.43`, `Item.44`, `Item.46`, `Item.50`, `Item.56`, `Item.57`, 
+                            `Item.58`, `Item.60`, `Item.65`, `Item.72`, `Item.76`, `Item.77`, 
+                            `Item.80`), na.rm = TRUE))
+
+```
+
+<br>
+
+**Grupo Solar:** Los siguientes Items son identificados como Solar
+
+| **Solar** |         |         |         |
+|:---------:|:-------:|:-------:|:-------:|
+|  Item.36  | Item.52 | Item.69 | Item.74 |
+
+<br>
+
+```{r}
+
+Solar = ventas%>% select(`Fecha`, `Item.36`, `Item.52`, `Item.69`, `Item.74`)
+
+Solar = Solar%>% mutate(Total_Solar = rowSums(select(.,`Item.36`, `Item.52`, `Item.69`, `Item.74`), na.rm = TRUE))
+
+```
+
+<br>
+
+**Grupo Storage Battery:** Los siguientes Items son identificados como Storage Battery
+
+| **Storage Battery** |         |         |         |
+|:-------------------:|:-------:|:-------:|:-------:|
+|       Item.11       | Item.18 | Item.24 | Item.35 |
+|       Item.37       | Item.40 | Item.64 | Item.67 |
+|       Item.78       |         |         |         |
+
+<br>
+
+```{r}
+Storage_Battery = ventas%>% select(`Fecha`, `Item.11`, `Item.18`, `Item.24`, `Item.35`, `Item.37`, 
+                            `Item.40`, `Item.64`, `Item.67`, `Item.78`)
+
+Storage_Battery = Storage_Battery%>% mutate(Total_Storage_Battery = rowSums(select(.,`Item.11`, `Item.18`, `Item.24`, `Item.35`, `Item.37`, `Item.40`, `Item.64`, `Item.67`, `Item.78`), na.rm = TRUE))
+
+```
+
+<br>
+
+**Grupo Surge:** Los siguientes Items son identificados como Surge
+
+| **Surge** |         |         |
+|:---------:|:-------:|:-------:|
+|  Item.47  | Item.54 | Item.61 |
+
+<br>
+
+```{r}
+Surge = ventas%>% select(`Fecha`, `Item.47`, `Item.54`, `Item.61`)
+
+Surge = Surge%>% mutate(Total_Surge = rowSums(select(.,`Item.47`, `Item.54`, `Item.61`), na.rm = TRUE))
+
+```
+
+<br>
+
+**Grupo Accesories:** Los siguientes Items son identificados como Accesories
+
+| **Accesories** |         |
+|:--------------:|:-------:|
+|    Item.42     | Item.73 |
+
+<br>
+
+```{r}
+Accesories = ventas%>% select(`Fecha`, `Item.42`, `Item.73`)
+
+Accesories = Accesories%>% mutate(Total_Accesories = rowSums(select(.,`Item.42`, `Item.73`), na.rm = TRUE))
+
+```
+<br>
+
+<br>
+```{r}
+datos_grupo = data.frame(
+  Fecha = data$Fecha,
+  AVR =AVR$Total_AVR,
+  Data_Center = Data_Center$Total_Data_Center,
+  Line_UPS = Line_UPS$Total_Line_UPS,
+  Online_UPS = Online_UPS$Total_Online_UPS,
+  Solar = Solar$Total_Solar,
+  Storage_Battery = Storage_Battery$Total_Storage_Battery,
+  Surge = Surge$Total_Surge,
+  Accesories = Accesories$Total_Accesories
+)
+
+head(datos_grupo)
+```
+<br>
+
+<br>
+```{r}
+skim(datos_grupo)
+```
+<br>
+
+Después de realizar las respectivas agrupaciones encontramos que de la base de datos solo será posible trabajar con los grupos AVR, Line UPS, Online UPS y Storage battery, estos grupos presentan una suficiente cantidad de datos para realizar los respectivos análisis al trabajar con datos en el tiempo.
+
+Los otros grupos presentan medianas en 0 lo cual indica que por lo menos el 50% de los datos son 0, por esta razón no serán tenidos en cuenta en este estudio.
+
+## Análisis de los datos en el tiempo
+
+### Medias moviles
+
+```{r}
+# Convertir a serie de tiempo
+AVR_ts <- ts(datos_grupo$AVR, start = c(2021, 2), frequency = 52)
+
+# plot
+autoplot(AVR_ts, series = "AVR" , color = "gray") + ylab("Ventas") + xlab("Semana")+
+  autolayer(ma(AVR_ts,7), series = "7-SMA", color = "red")+
+  ggtitle("Datos ventas AVR y Media Móvil 7 periodos")
+
+```
+```{r}
+# Convertir a serie de tiempo
+Line_UPS_ts <- ts(datos_grupo$Line_UPS, start = c(2021, 2), frequency = 52)
+
+# plot
+autoplot(Line_UPS_ts, series = "AVR" , color = "gray") + ylab("Ventas") + xlab("Semana")+
+  autolayer(ma(Line_UPS_ts,7), series = "7-SMA", color = "red")+
+  ggtitle("Datos ventas Line UPS y Media Móvil 7 periodos")
+```
+
+```{r}
+# Convertir a serie de tiempo
+Online_UPS_ts <- ts(datos_grupo$Online_UPS, start = c(2021, 2), frequency = 52)
+
+# plot
+autoplot(Online_UPS_ts, series = "AVR" , color = "gray") + ylab("Ventas") + xlab("Semana")+
+  autolayer(ma(Online_UPS_ts,7), series = "7-SMA", color = "red")+
+  ggtitle("Datos ventas Online UPS y Media Móvil 7 periodos")
+
+```
+
+```{r}
+# Convertir a serie de tiempo
+Storage_Battery_ts <- ts(datos_grupo$Storage_Battery, start = c(2021, 2), frequency = 52)
+
+# plot
+autoplot(Storage_Battery_ts, series = "AVR" , color = "gray") + ylab("Ventas") + xlab("Semana")+
+  autolayer(ma(Storage_Battery_ts,7), series = "7-SMA", color = "red")+
+  ggtitle("Datos ventas Storage Battery y Media Móvil 7 periodos")
+```
+
+### Rezagos
+
+```{r}
+# lag plot grafica de rezagos 
+lag.plot(AVR_ts, 12, main = "Rezago AVR", do.lines = FALSE)
+```
+```{r}
+# lag plot grafica de rezagos 
+lag.plot(Line_UPS_ts, 12, main = "Rezago Line UPS", do.lines = FALSE)
+```
+```{r}
+# lag plot grafica de rezagos 
+lag.plot(Online_UPS_ts, 12, main = "Rezago Online UPS", do.lines = FALSE)
+```
+
+```{r}
+# lag plot grafica de rezagos 
+lag.plot(Storage_Battery_ts, 12, main = "Rezago Storage Battery", do.lines = FALSE)
+```
+### ACF
+
+```{r}
+ ggAcf(AVR_ts)
+
+```
+
+```{r}
+ ggAcf(Line_UPS_ts)
+
+```
+
+```{r}
+ ggAcf(Online_UPS_ts)
+
+```
+
+```{r}
+ ggAcf(Storage_Battery_ts)
+
+```
+
+```{r}
+seasonplot(AVR_ts,  
+           col = rainbow(4), 
+           year.labels = TRUE) 
+```
+```{r}
+seasonplot(Line_UPS_ts,  
+           col = rainbow(4), 
+           year.labels = TRUE) 
+```
+```{r}
+seasonplot(Online_UPS_ts, 
+           col = rainbow(4), 
+           year.labels = TRUE) 
+```
+
+```{r}
+seasonplot(Storage_Battery_ts, 
+           col = rainbow(4), 
+           year.labels = TRUE) 
+```
 
