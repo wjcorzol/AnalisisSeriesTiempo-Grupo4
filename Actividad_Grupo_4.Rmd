@@ -79,7 +79,7 @@ Al analizar los estadísticos presentados se puede entender que:
 
 <br>
 
-Como se menciono anteriormente sera necesario realizar algunos procedimisntos previos antes de comenzar a realizar analisis, dentro de los procedimientos sera necesario realizar una limpieza o imputacion de datos y crear agrupaciones por categorias de items.
+Como se menciono anteriormente sera necesario realizar algunos procedimientos previos antes de comenzar a realizar analisis, dentro de los procedimientos sera necesario realizar una limpieza o imputacion de datos y crear agrupaciones por categorias de items.
 
 Dentro del dataset se encuentran registros negativos que corresponden a devoluciones de productos, nos centraremos en las ventas por lo tanto estos datos seran imputados con ceros por ser considerados anomalos.
 
@@ -295,9 +295,13 @@ Los otros grupos presentan medianas en 0 lo cual indica que por lo menos el 50% 
 
 ## Análisis de los datos en el tiempo
 
-### Medias moviles
+### Media móviles
 
-```{r}
+Las ventas de AVR muestran picos pronunciados en ciertos periodos, especialmente en 2021 y 2022. La variabilidad es alta, con ventas que alcanzan valores superiores a 20,000 en algunos momentos. 
+
+La media móvil de 7 periodos (roja) suaviza las fluctuaciones, mostrando una tendencia general estable con aumentos ocasionales.
+<br>
+```{r warning=FALSE}
 # Convertir a serie de tiempo
 AVR_ts <- ts(datos_grupo$AVR, start = c(2021, 2), frequency = 52)
 
@@ -307,7 +311,12 @@ autoplot(AVR_ts, series = "AVR" , color = "gray") + ylab("Ventas") + xlab("Seman
   ggtitle("Datos ventas AVR y Media Móvil 7 periodos")
 
 ```
-```{r}
+<br>
+Los datos de ventas de Line UPS tienen picos menos extremos que en AVR, con un máximo alrededor de 12,500. La serie es más constante.
+
+La media móvil sigue una tendencia ligeramente descendente en 2021, estabilizándose después con fluctuaciones menos pronunciadas.
+<br>
+```{r warning=FALSE}
 # Convertir a serie de tiempo
 Line_UPS_ts <- ts(datos_grupo$Line_UPS, start = c(2021, 2), frequency = 52)
 
@@ -316,8 +325,12 @@ autoplot(Line_UPS_ts, series = "AVR" , color = "gray") + ylab("Ventas") + xlab("
   autolayer(ma(Line_UPS_ts,7), series = "7-SMA", color = "red")+
   ggtitle("Datos ventas Line UPS y Media Móvil 7 periodos")
 ```
+<br>
+El gráfico de ventas de Online UPS muestra valores de ventas mucho menores en comparación con AVR y Line UPS, con picos que apenas superan los 600. La serie tiene fluctuaciones más regulares y moderadas. 
 
-```{r}
+La media móvil es más estable, aunque sigue algunas oscilaciones a lo largo del tiempo.
+<br>
+```{r warning=FALSE}
 # Convertir a serie de tiempo
 Online_UPS_ts <- ts(datos_grupo$Online_UPS, start = c(2021, 2), frequency = 52)
 
@@ -327,8 +340,12 @@ autoplot(Online_UPS_ts, series = "AVR" , color = "gray") + ylab("Ventas") + xlab
   ggtitle("Datos ventas Online UPS y Media Móvil 7 periodos")
 
 ```
+<br>
+Se observan picos importantes de ventas de Storage Battery en 2023 y 2024, alcanzando más de 6,000 unidades. 
 
-```{r}
+La media móvil sigue los aumentos a partir de 2023, mostrando una tendencia al alza con mayor estabilidad hacia 2024.
+<br>
+```{r warning=FALSE}
 # Convertir a serie de tiempo
 Storage_Battery_ts <- ts(datos_grupo$Storage_Battery, start = c(2021, 2), frequency = 52)
 
@@ -337,8 +354,15 @@ autoplot(Storage_Battery_ts, series = "AVR" , color = "gray") + ylab("Ventas") +
   autolayer(ma(Storage_Battery_ts,7), series = "7-SMA", color = "red")+
   ggtitle("Datos ventas Storage Battery y Media Móvil 7 periodos")
 ```
-
+<br>
 ### Rezagos
+
+Los gráficos de los rezagos presentados a continuación no muestran una tendencia o una correlación claramente.
+
+Particularmente en los grupos AVR y Storage Battery presentan acumulaciones de puntos en el punto 0 debido a que estos dos grupos particularmente tienen una mayor de registros en ceros.
+
+Para los grupos Line UPS y Online UPS los datos presentan un comportamiento disperso.
+<br>
 
 ```{r}
 # lag plot grafica de rezagos 
@@ -357,27 +381,8 @@ lag.plot(Online_UPS_ts, 12, main = "Rezago Online UPS", do.lines = FALSE)
 # lag plot grafica de rezagos 
 lag.plot(Storage_Battery_ts, 12, main = "Rezago Storage Battery", do.lines = FALSE)
 ```
-### ACF
 
-```{r}
- ggAcf(AVR_ts)
 
-```
-
-```{r}
- ggAcf(Line_UPS_ts)
-
-```
-
-```{r}
- ggAcf(Online_UPS_ts)
-
-```
-
-```{r}
- ggAcf(Storage_Battery_ts)
-
-```
 ### Estacionalidad
 ```{r}
 seasonplot(AVR_ts,  
