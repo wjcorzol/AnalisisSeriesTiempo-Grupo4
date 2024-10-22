@@ -4,6 +4,9 @@ author: "Andrés Monsalve, Luz Angélica Norato y Willy Corzo"
 date: "2024-10-13"
 output: 
   html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
     smooth_scroll: true
     theme: journal
     highlight: kate
@@ -331,7 +334,9 @@ autoplot(Line_UPS_ts, series = "AVR" , color = "gray") + ylab("Ventas") + xlab("
   ggtitle("Datos ventas Line UPS y Media Móvil 7 periodos")
 ```
 
-<br> El gráfico de ventas de Online UPS muestra valores de ventas mucho menores en comparación con AVR y Line UPS, con picos que apenas superan los 600. La serie tiene fluctuaciones más regulares y moderadas.
+<br> 
+
+El gráfico de ventas de Online UPS muestra valores de ventas mucho menores en comparación con AVR y Line UPS, con picos que apenas superan los 600. La serie tiene fluctuaciones más regulares y moderadas.
 
 La media móvil es más estable, aunque sigue algunas oscilaciones a lo largo del tiempo. <br>
 
@@ -346,7 +351,9 @@ autoplot(Online_UPS_ts, series = "AVR" , color = "gray") + ylab("Ventas") + xlab
 
 ```
 
-<br> Se observan picos importantes de ventas de Storage Battery en 2023 y 2024, alcanzando más de 6,000 unidades.
+<br> 
+
+Se observan picos importantes de ventas de Storage Battery en 2023 y 2024, alcanzando más de 6,000 unidades.
 
 La media móvil sigue los aumentos a partir de 2023, mostrando una tendencia al alza con mayor estabilidad hacia 2024. <br>
 
@@ -391,27 +398,37 @@ lag.plot(Storage_Battery_ts, 12, main = "Rezago Storage Battery", do.lines = FAL
 ```
 
 ### Estacionalidad
+<br>
+Para los datos de AVR se observan comportamiento identificable con picos pronunciados entre las semanas 25 y 29 en 3 de los 4 años de estudio.
+<br>
 
 ```{r}
 seasonplot(AVR_ts,  
            col = rainbow(4), 
            year.labels = TRUE) 
 ```
-
+<br>
+Para el grupo de items Line UPS se alcanza a identificar un comportamiento similar entre los datos mostrando un fenómeno de estacionalidad entre las semanas 35 y 37.
+<br>
 ```{r}
 seasonplot(Line_UPS_ts,  
            col = rainbow(4), 
            year.labels = TRUE) 
 ```
-
+<br>
+Para el grupo de items de Online UPS no se alcanza a identificar patrones marcados, los datos parecen presentar un fenómeno de aleatoriedad en los datos. 
+<br>
 ```{r}
 seasonplot(Online_UPS_ts, 
            col = rainbow(4), 
            year.labels = TRUE) 
 ```
-
+<br>
+Para el grupo de items de Storage battery no se alcanza a identificar patrones marcados, los datos parecen presentar un fenómeno de aleatoriedad en los datos.
+<br>
 ```{r}
 seasonplot(Storage_Battery_ts, 
            col = rainbow(4), 
            year.labels = TRUE) 
 ```
+
