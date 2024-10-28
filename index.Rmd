@@ -1,17 +1,18 @@
----
+--- 
 title: "Actividad Grupo 4 - Análisis Series de Tiempo"
 author: "Andrés Monsalve, Luz Angélica Norato y Willy Corzo"
-date: "2024-10-13"
-output: 
-  html_document:
-    toc: true
-    toc_depth: 3
-    toc_float: true
-    smooth_scroll: true
-    theme: journal
-    highlight: kate
-    df_print: paged
-    code_folding: hide
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
 ---
 
 ```{r setup, include=FALSE}
