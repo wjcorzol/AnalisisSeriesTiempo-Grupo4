@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Actividad 3 - Preprocesamiento y visualización | Actividad Grupo 4 - Análisis Series de Tiempo</title>
+  <meta name="description" content="Actividad 3 - Preprocesamiento y visualización | Actividad Grupo 4 - Análisis Series de Tiempo" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Actividad 3 - Preprocesamiento y visualización | Actividad Grupo 4 - Análisis Series de Tiempo" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Actividad 3 - Preprocesamiento y visualización | Actividad Grupo 4 - Análisis Series de Tiempo" />
+  
+  
+  
+
+<meta name="author" content="Andrés Monsalve, Luz Angélica Norato y Willy Corzo" />
+
+
+<meta name="date" content="2024-11-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estructura-de-los-datos-en-series-de-tiempo.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> - Descripción de la Base de Datos</a></li>
+<li class="chapter" data-level="2" data-path="estructura-de-los-datos-en-series-de-tiempo.html"><a href="estructura-de-los-datos-en-series-de-tiempo.html"><i class="fa fa-check"></i><b>2</b> - Estructura de los datos en series de tiempo</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estructura-de-los-datos-en-series-de-tiempo.html"><a href="estructura-de-los-datos-en-series-de-tiempo.html#entendimiento-de-los-datos"><i class="fa fa-check"></i><b>2.1</b> Entendimiento de los Datos</a></li>
+<li class="chapter" data-level="2.2" data-path="estructura-de-los-datos-en-series-de-tiempo.html"><a href="estructura-de-los-datos-en-series-de-tiempo.html#preparación-de-los-datos"><i class="fa fa-check"></i><b>2.2</b> Preparación de los Datos</a></li>
+<li class="chapter" data-level="2.3" data-path="estructura-de-los-datos-en-series-de-tiempo.html"><a href="estructura-de-los-datos-en-series-de-tiempo.html#análisis-de-los-datos-en-el-tiempo"><i class="fa fa-check"></i><b>2.3</b> Análisis de los datos en el tiempo</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="estructura-de-los-datos-en-series-de-tiempo.html"><a href="estructura-de-los-datos-en-series-de-tiempo.html#media-móviles"><i class="fa fa-check"></i><b>2.3.1</b> Media móviles</a></li>
+<li class="chapter" data-level="2.3.2" data-path="estructura-de-los-datos-en-series-de-tiempo.html"><a href="estructura-de-los-datos-en-series-de-tiempo.html#rezagos"><i class="fa fa-check"></i><b>2.3.2</b> Rezagos</a></li>
+<li class="chapter" data-level="2.3.3" data-path="estructura-de-los-datos-en-series-de-tiempo.html"><a href="estructura-de-los-datos-en-series-de-tiempo.html#estacionalidad"><i class="fa fa-check"></i><b>2.3.3</b> Estacionalidad</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html"><i class="fa fa-check"></i><b>3</b> - Preprocesamiento y visualización</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#estacionalidad-de-las-series-de-tiempo"><i class="fa fa-check"></i><b>3.1</b> Estacionalidad de las series de tiempo</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#avr"><i class="fa fa-check"></i><b>3.1.1</b> AVR</a></li>
+<li class="chapter" data-level="3.1.2" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#line-ups"><i class="fa fa-check"></i><b>3.1.2</b> Line UPS</a></li>
+<li class="chapter" data-level="3.1.3" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#online-ups"><i class="fa fa-check"></i><b>3.1.3</b> Online UPS</a></li>
+<li class="chapter" data-level="3.1.4" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#storage-battery"><i class="fa fa-check"></i><b>3.1.4</b> Storage Battery</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#funciones-acf-funcion-de-autocorrelacion-y-pacf-funcion-de-autocorrelacion-parcial"><i class="fa fa-check"></i><b>3.2</b> Funciones ACF (Funcion de Autocorrelacion) y PACF ( Funcion de Autocorrelacion Parcial)</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#análisis-de-la-categoría-avr"><i class="fa fa-check"></i><b>3.2.1</b> Análisis de la Categoría AVR</a></li>
+<li class="chapter" data-level="3.2.2" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#análisis-de-la-categoría-line-ups"><i class="fa fa-check"></i><b>3.2.2</b> Análisis de la Categoría Line UPS</a></li>
+<li class="chapter" data-level="3.2.3" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#análisis-de-la-categoría-online-ups"><i class="fa fa-check"></i><b>3.2.3</b> Análisis de la Categoría Online UPS</a></li>
+<li class="chapter" data-level="3.2.4" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#análisis-de-la-categoría-storage-battery"><i class="fa fa-check"></i><b>3.2.4</b> Análisis de la Categoría Storage Battery</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#descomposición-aditiva"><i class="fa fa-check"></i><b>3.3</b> Descomposición aditiva</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#descomposición-aditiva-avr"><i class="fa fa-check"></i><b>3.3.1</b> Descomposición Aditiva AVR</a></li>
+<li class="chapter" data-level="3.3.2" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#descomposición-aditiva-line-ups"><i class="fa fa-check"></i><b>3.3.2</b> Descomposición Aditiva Line UPS</a></li>
+<li class="chapter" data-level="3.3.3" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#descomposición-aditiva-online-ups"><i class="fa fa-check"></i><b>3.3.3</b> Descomposición Aditiva Online UPS</a></li>
+<li class="chapter" data-level="3.3.4" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#descomposición-aditiva-storage-battery"><i class="fa fa-check"></i><b>3.3.4</b> Descomposición Aditiva Storage Battery</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#descomposición-multiplicativa"><i class="fa fa-check"></i><b>3.4</b> Descomposición Multiplicativa</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#descomposición-multiplicativa-avr"><i class="fa fa-check"></i><b>3.4.1</b> Descomposición Multiplicativa AVR</a></li>
+<li class="chapter" data-level="3.4.2" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#descomposición-multiplicativa-line-ups"><i class="fa fa-check"></i><b>3.4.2</b> Descomposición Multiplicativa Line UPS</a></li>
+<li class="chapter" data-level="3.4.3" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#descomposición-multiplicativa-online-ups"><i class="fa fa-check"></i><b>3.4.3</b> Descomposición Multiplicativa Online UPS</a></li>
+<li class="chapter" data-level="3.4.4" data-path="preprocesamiento-y-visualización.html"><a href="preprocesamiento-y-visualización.html#descomposición-multiplicativa-storage-battery"><i class="fa fa-check"></i><b>3.4.4</b> Descomposición Multiplicativa Storage Battery</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Actividad Grupo 4 - Análisis Series de Tiempo</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="preprocesamiento-y-visualización" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Actividad 3</span> - Preprocesamiento y visualización<a href="preprocesamiento-y-visualización.html#preprocesamiento-y-visualización" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="estacionalidad-de-las-series-de-tiempo" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Estacionalidad de las series de tiempo<a href="preprocesamiento-y-visualización.html#estacionalidad-de-las-series-de-tiempo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br></p>
+<p>Para comprobar si las series presentan estacionalidad se aplicará el test de Dickey-Fuller Aumentado (ADF), en el cual se plantea la hipótesis nula donde la serie de tiempo tiene una raíz unitaria, lo que implica que la serie no es estacionaria. La hipótesis alterna sugiere que la serie es estacionaria.</p>
+<p>El valor p será la clave para escoger la hipótesis, si el valor p es menor a un nivel de significancia de 0.05 entonces rechazamos la hipótesis nula y podemos concluir qué la serie es estacionaria.</p>
+<p>Podemos observar que en las 4 categorias el test Dickey-Fuller, arroja un p-value menor a 0.05, lo que nos confirma la estacionalidad de los datos.</p>
+<div id="avr" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> AVR<a href="preprocesamiento-y-visualización.html#avr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="preprocesamiento-y-visualización.html#cb1-1" tabindex="-1"></a>   <span class="co"># Perform the Augmented Dickey-Fuller test</span></span>
+<span id="cb1-2"><a href="preprocesamiento-y-visualización.html#cb1-2" tabindex="-1"></a>   adf_AVR <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(AVR_ts)</span>
+<span id="cb1-3"><a href="preprocesamiento-y-visualización.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="preprocesamiento-y-visualización.html#cb1-4" tabindex="-1"></a>   <span class="co"># Print the results</span></span>
+<span id="cb1-5"><a href="preprocesamiento-y-visualización.html#cb1-5" tabindex="-1"></a>   <span class="fu">print</span>(adf_AVR)</span></code></pre></div>
+<pre><code>
+    Augmented Dickey-Fuller Test
+
+data:  AVR_ts
+Dickey-Fuller = -5.3614, Lag order = 5, p-value = 0.01
+alternative hypothesis: stationary</code></pre>
+<p><br> La base de datos AVR presenta estacionalidad.</p>
+</div>
+<div id="line-ups" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Line UPS<a href="preprocesamiento-y-visualización.html#line-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="preprocesamiento-y-visualización.html#cb3-1" tabindex="-1"></a>  <span class="co"># Perform the Augmented Dickey-Fuller test</span></span>
+<span id="cb3-2"><a href="preprocesamiento-y-visualización.html#cb3-2" tabindex="-1"></a>   adf_Line_UPS <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(Line_UPS_ts)</span>
+<span id="cb3-3"><a href="preprocesamiento-y-visualización.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="preprocesamiento-y-visualización.html#cb3-4" tabindex="-1"></a>   <span class="co"># Print the results</span></span>
+<span id="cb3-5"><a href="preprocesamiento-y-visualización.html#cb3-5" tabindex="-1"></a>   <span class="fu">print</span>(adf_Line_UPS)</span></code></pre></div>
+<pre><code>
+    Augmented Dickey-Fuller Test
+
+data:  Line_UPS_ts
+Dickey-Fuller = -4.8432, Lag order = 5, p-value = 0.01
+alternative hypothesis: stationary</code></pre>
+<p><br> La base de datos Line UPS presenta estacionalidad.</p>
+</div>
+<div id="online-ups" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Online UPS<a href="preprocesamiento-y-visualización.html#online-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="preprocesamiento-y-visualización.html#cb5-1" tabindex="-1"></a>  <span class="co"># Perform the Augmented Dickey-Fuller test</span></span>
+<span id="cb5-2"><a href="preprocesamiento-y-visualización.html#cb5-2" tabindex="-1"></a>   adf_Online_UPS <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(Online_UPS_ts)</span>
+<span id="cb5-3"><a href="preprocesamiento-y-visualización.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="preprocesamiento-y-visualización.html#cb5-4" tabindex="-1"></a>   <span class="co"># Print the results</span></span>
+<span id="cb5-5"><a href="preprocesamiento-y-visualización.html#cb5-5" tabindex="-1"></a>   <span class="fu">print</span>(adf_Online_UPS)</span></code></pre></div>
+<pre><code>
+    Augmented Dickey-Fuller Test
+
+data:  Online_UPS_ts
+Dickey-Fuller = -6.2101, Lag order = 5, p-value = 0.01
+alternative hypothesis: stationary</code></pre>
+<p><br> La base de datos Online UPS presenta estacionalidad.</p>
+</div>
+<div id="storage-battery" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Storage Battery<a href="preprocesamiento-y-visualización.html#storage-battery" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="preprocesamiento-y-visualización.html#cb7-1" tabindex="-1"></a>  <span class="co"># Perform the Augmented Dickey-Fuller test</span></span>
+<span id="cb7-2"><a href="preprocesamiento-y-visualización.html#cb7-2" tabindex="-1"></a>   adf_Storage_Battery <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(Storage_Battery_ts)</span>
+<span id="cb7-3"><a href="preprocesamiento-y-visualización.html#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="preprocesamiento-y-visualización.html#cb7-4" tabindex="-1"></a>   <span class="co"># Print the results</span></span>
+<span id="cb7-5"><a href="preprocesamiento-y-visualización.html#cb7-5" tabindex="-1"></a>   <span class="fu">print</span>(adf_Storage_Battery)</span></code></pre></div>
+<pre><code>
+    Augmented Dickey-Fuller Test
+
+data:  Storage_Battery_ts
+Dickey-Fuller = -5.3686, Lag order = 5, p-value = 0.01
+alternative hypothesis: stationary</code></pre>
+<p><br> La base de datos Storage Battery presenta estacionalidad.</p>
+</div>
+</div>
+<div id="funciones-acf-funcion-de-autocorrelacion-y-pacf-funcion-de-autocorrelacion-parcial" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Funciones ACF (Funcion de Autocorrelacion) y PACF ( Funcion de Autocorrelacion Parcial)<a href="preprocesamiento-y-visualización.html#funciones-acf-funcion-de-autocorrelacion-y-pacf-funcion-de-autocorrelacion-parcial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="análisis-de-la-categoría-avr" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Análisis de la Categoría AVR<a href="preprocesamiento-y-visualización.html#análisis-de-la-categoría-avr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="preprocesamiento-y-visualización.html#cb9-1" tabindex="-1"></a><span class="co"># Graficar ACF y PACF</span></span>
+<span id="cb9-2"><a href="preprocesamiento-y-visualización.html#cb9-2" tabindex="-1"></a><span class="fu">ggAcf</span>(AVR_ts, <span class="at">main=</span><span class="st">&#39;ACF - AVR&#39;</span>)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="preprocesamiento-y-visualización.html#cb10-1" tabindex="-1"></a><span class="fu">ggPacf</span>(AVR_ts, <span class="at">main=</span><span class="st">&#39;PACF - AVR&#39;</span>)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<p><br> La mayoría de las autocorrelaciones están cerca de cero, y no parece haber un patrón claro. Esto sugiere que la serie podría ser estacionaria, con poca dependencia en los lags pasados.</p>
+<p>En la grafica de PACF no hay un corte claro en los primeros lags ni un patrón significativo de correlaciones altas.</p>
+<p>La serie AVR parece ser estacionaria y con poca dependencia en sus lags, por lo que modelos simples como un modelo ARMA podrían ser apropiados.</p>
+</div>
+<div id="análisis-de-la-categoría-line-ups" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Análisis de la Categoría Line UPS<a href="preprocesamiento-y-visualización.html#análisis-de-la-categoría-line-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="preprocesamiento-y-visualización.html#cb11-1" tabindex="-1"></a><span class="co"># Graficar ACF y PACF</span></span>
+<span id="cb11-2"><a href="preprocesamiento-y-visualización.html#cb11-2" tabindex="-1"></a><span class="fu">ggAcf</span>(Line_UPS_ts, <span class="at">main=</span><span class="st">&#39;ACF - Line UPS&#39;</span>)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="preprocesamiento-y-visualización.html#cb12-1" tabindex="-1"></a><span class="fu">ggPacf</span>(Line_UPS_ts, <span class="at">main=</span><span class="st">&#39;PACF - Line UPS&#39;</span>)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<p><br> La grafica ACF no muestra un patrón claro, con la mayoría de las correlaciones cerca de cero. Esto también sugiere que la serie es estacionaria.</p>
+<p>En la grafica PACF no se observa un corte significativo ni un patrón dominante en los primeros lags.</p>
+<p>Dado que no hay señales de dependencia fuerte en los lags, la serie parece estacionaria y no se requeriría un modelo complejo. Se podría considerar un modelo ARIMA simple o incluso un modelo sin componentes autoregresivos o de media móvil.</p>
+</div>
+<div id="análisis-de-la-categoría-online-ups" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Análisis de la Categoría Online UPS<a href="preprocesamiento-y-visualización.html#análisis-de-la-categoría-online-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="preprocesamiento-y-visualización.html#cb13-1" tabindex="-1"></a><span class="co"># Graficar ACF y PACF</span></span>
+<span id="cb13-2"><a href="preprocesamiento-y-visualización.html#cb13-2" tabindex="-1"></a><span class="fu">ggAcf</span>(Online_UPS_ts, <span class="at">main=</span><span class="st">&#39;ACF - Online UPS&#39;</span>)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="preprocesamiento-y-visualización.html#cb14-1" tabindex="-1"></a><span class="fu">ggPacf</span>(Online_UPS_ts, <span class="at">main=</span><span class="st">&#39;PACF - Online UPS&#39;</span>)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<p><br> La grafica de ACF muestra autocorrelaciones en algunos lags, aunque en general la mayoría están dentro de los límites de significancia.</p>
+<p>La grafica de PACF similar a la ACF, con algunas correlaciones en los primeros lags pero sin un patrón de corte claro.</p>
+<p>Este patrón podría indicar que se necesita un modelo simple, como ARIMA con un componente AR o MA de bajo orden. La serie parece estacionaria, pero un análisis adicional podría confirmar la falta de tendencia o estacionalidad.</p>
+</div>
+<div id="análisis-de-la-categoría-storage-battery" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Análisis de la Categoría Storage Battery<a href="preprocesamiento-y-visualización.html#análisis-de-la-categoría-storage-battery" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="preprocesamiento-y-visualización.html#cb15-1" tabindex="-1"></a><span class="co"># Graficar ACF y PACF</span></span>
+<span id="cb15-2"><a href="preprocesamiento-y-visualización.html#cb15-2" tabindex="-1"></a>  </span>
+<span id="cb15-3"><a href="preprocesamiento-y-visualización.html#cb15-3" tabindex="-1"></a><span class="fu">ggAcf</span>(Storage_Battery_ts, <span class="at">main=</span><span class="st">&#39;ACF - Storage Battery&#39;</span>)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="preprocesamiento-y-visualización.html#cb16-1" tabindex="-1"></a><span class="fu">ggPacf</span>(Storage_Battery_ts, <span class="at">main=</span><span class="st">&#39;PACF  - Storage Battery&#39;</span>)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p><br> La grafica ACF muestra un decaimiento gradual, lo cual podría ser indicativo de una serie no estacionaria. Este patrón es característico de una serie con una tendencia subyacente.</p>
+<p>En la grafica PACF se observa un corte más claro en los primeros lags, lo que sugiere que un modelo autoregresivo (AR) podría capturar parte de la dependencia en los datos.</p>
+<p>Dado el patrón de decaimiento en la ACF y el corte en la PACF, un modelo ARIMA sería adecuado para esta serie, posiblemente con un componente autoregresivo (AR) y un grado de diferenciación (d = 1) para hacer la serie estacionaria. Un modelo ARIMA(1,1,0) podría ser una buena opción inicial para esta serie.</p>
+</div>
+</div>
+<div id="descomposición-aditiva" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Descomposición aditiva<a href="preprocesamiento-y-visualización.html#descomposición-aditiva" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Componente observada (observed): Esta es la serie de tiempo original. Muestra el comportamiento general de los datos a lo largo del tiempo, incluyendo las fluctuaciones, tendencias y patrones estacionales.</p>
+<p>Componente de tendencia (trend): Aquí se muestra la tendencia a largo plazo de la serie de tiempo. Representa la dirección general de la serie (si está aumentando, disminuyendo o permaneciendo relativamente constante).</p>
+<p>Componente estacional (seasonal): Este componente captura los patrones repetitivos o cíclicos que se presentan en intervalos regulares, como los que podrían ocurrir debido a fenómenos estacionales (por ejemplo, aumentos en ventas por estaciones del año).</p>
+<p>Componente aleatorio o residual (random): Representa la parte no explicada por la tendencia o los patrones estacionales, es decir, las fluctuaciones aleatorias o ruido.</p>
+<p>¿Qué significa que sea una descomposición aditiva?</p>
+<p>En una descomposición aditiva, los valores observados de la serie de tiempo se descomponen como la suma de los tres componentes: tendencia, estacionalidad y componente aleatorio. Es decir:</p>
+<p><span class="math display">\[
+Observado = Tendencia + Estacionalidad + Componente Aleatorio
+\]</span> <br></p>
+<div id="descomposición-aditiva-avr" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Descomposición Aditiva AVR<a href="preprocesamiento-y-visualización.html#descomposición-aditiva-avr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="preprocesamiento-y-visualización.html#cb17-1" tabindex="-1"></a><span class="co"># Descomposición aditiva</span></span>
+<span id="cb17-2"><a href="preprocesamiento-y-visualización.html#cb17-2" tabindex="-1"></a>descomposicion_aditiva_AVR <span class="ot">&lt;-</span> <span class="fu">decompose</span>(AVR_ts)</span>
+<span id="cb17-3"><a href="preprocesamiento-y-visualización.html#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="preprocesamiento-y-visualización.html#cb17-4" tabindex="-1"></a><span class="co"># Graficar los componentes </span></span>
+<span id="cb17-5"><a href="preprocesamiento-y-visualización.html#cb17-5" tabindex="-1"></a><span class="fu">autoplot</span>(descomposicion_aditiva_AVR)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><br>En la gráfica de la tendencia se puedes ver que hay una caída en la tendencia alrededor de 2022, seguida de una recuperación en 2023.</p>
+<p>En la gráfica de la estacionalidad se puede observar que los picos y valles se repiten en intervalos regulares.</p>
+<p>El componente aleatorio no presenta algun patron evidente, esto sugiere que el modelo de descomposición ha capturado adecuadamente la tendencia y la estacionalidad de la serie.</p>
+<p>Esta descomposición muestra que la serie temporal está dominada por una componente estacional fuerte y una tendencia cambiante. El componente residual es relativamente pequeño en comparación con la magnitud de los picos en los datos, lo que sugiere que la mayor parte de la variabilidad ha sido capturada por los componentes de tendencia y estacionalidad.</p>
+</div>
+<div id="descomposición-aditiva-line-ups" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Descomposición Aditiva Line UPS<a href="preprocesamiento-y-visualización.html#descomposición-aditiva-line-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="preprocesamiento-y-visualización.html#cb18-1" tabindex="-1"></a><span class="co"># Descomposición aditiva</span></span>
+<span id="cb18-2"><a href="preprocesamiento-y-visualización.html#cb18-2" tabindex="-1"></a>descomposicion_aditiva_Line_UPS <span class="ot">&lt;-</span> <span class="fu">decompose</span>(Line_UPS_ts)</span>
+<span id="cb18-3"><a href="preprocesamiento-y-visualización.html#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="preprocesamiento-y-visualización.html#cb18-4" tabindex="-1"></a><span class="co"># Graficar los componentes</span></span>
+<span id="cb18-5"><a href="preprocesamiento-y-visualización.html#cb18-5" tabindex="-1"></a><span class="fu">autoplot</span>(descomposicion_aditiva_Line_UPS)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><br>En la serie se observa una tendencia a lo largo de los años y un comportamiento de picos y valles que podrían estar asociados a factores estacionales.</p>
+<p>La tendencia parece mostrar un descenso gradual al principio, seguido de una recuperación leve en 2023 y una estabilización hacia 2024.</p>
+<p>El componente estacional es bastante pronunciado y constante a lo largo del tiempo, lo cual sugiere que existe un patrón repetitivo en intervalos regulares.</p>
+<p>El componente de residuales muestra variaciones que no fueron explicadas por la tendencia ni por la estacionalidad. Aunque algunos picos en los residuales son notables, en general, parecen estar distribuidos aleatoriamente, lo cual es una buena señal. Los residuales no presentan patrones fuertes ni sistemáticos, lo que sugiere que la descomposición capturó adecuadamente la estructura de la serie temporal.</p>
+</div>
+<div id="descomposición-aditiva-online-ups" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Descomposición Aditiva Online UPS<a href="preprocesamiento-y-visualización.html#descomposición-aditiva-online-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="preprocesamiento-y-visualización.html#cb19-1" tabindex="-1"></a><span class="co"># Descomposición aditiva</span></span>
+<span id="cb19-2"><a href="preprocesamiento-y-visualización.html#cb19-2" tabindex="-1"></a>descomposicion_aditiva_Online_UPS <span class="ot">&lt;-</span> <span class="fu">decompose</span>(Online_UPS_ts)</span>
+<span id="cb19-3"><a href="preprocesamiento-y-visualización.html#cb19-3" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="preprocesamiento-y-visualización.html#cb19-4" tabindex="-1"></a><span class="co"># Graficar los componentes</span></span>
+<span id="cb19-5"><a href="preprocesamiento-y-visualización.html#cb19-5" tabindex="-1"></a><span class="fu">autoplot</span>(descomposicion_aditiva_Online_UPS)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><br>La magnitud de los valores varía, pero no de forma significativa en amplitud, lo que hace que una descomposición aditiva sea razonable para esta serie.</p>
+<p>La tendencia muestra un incremento gradual a lo largo del tiempo, lo que indica un crecimiento sostenido en el valor promedio de la serie. Esta podría representar un cambio a largo plazo en el fenómeno observado.</p>
+<p>El componente estacional tiene una forma bastante estable y muestra un patrón repetitivo en intervalos regulares, indicando una estacionalidad clara y predecible.</p>
+<p>Los residuales son relativamente pequeños y están distribuidos de manera aleatoria, lo cual es un buen indicador de que la descomposición ha capturado bien tanto la tendencia como la estacionalidad.</p>
+</div>
+<div id="descomposición-aditiva-storage-battery" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Descomposición Aditiva Storage Battery<a href="preprocesamiento-y-visualización.html#descomposición-aditiva-storage-battery" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="preprocesamiento-y-visualización.html#cb20-1" tabindex="-1"></a><span class="co"># Descomposición aditiva</span></span>
+<span id="cb20-2"><a href="preprocesamiento-y-visualización.html#cb20-2" tabindex="-1"></a>descomposicion_aditiva_Storage_Battery <span class="ot">&lt;-</span> <span class="fu">decompose</span>(Storage_Battery_ts)</span>
+<span id="cb20-3"><a href="preprocesamiento-y-visualización.html#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="preprocesamiento-y-visualización.html#cb20-4" tabindex="-1"></a><span class="co"># Graficar los componentes</span></span>
+<span id="cb20-5"><a href="preprocesamiento-y-visualización.html#cb20-5" tabindex="-1"></a><span class="fu">autoplot</span>(descomposicion_aditiva_Storage_Battery)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><br>La serie muestra un aumento en la variabilidad hacia el final del período, con picos más altos en 2023 y 2024. Esto podría sugerir un aumento en la intensidad o frecuencia de ciertos eventos. Aunque la magnitud de los valores varía, la serie mantiene un patrón estacional estable, lo cual es un buen indicio para la aplicabilidad de una descomposición aditiva.</p>
+<p>La tendencia muestra un incremento sostenido a lo largo del tiempo, alcanzando un máximo en el último periodo. Esto podría reflejar un crecimiento subyacente en la serie. Este comportamiento sugiere que el fenómeno tiene un componente de crecimiento a largo plazo, lo cual podría deberse a factores externos o tendencias generales en el contexto del fenómeno observado.</p>
+<p>El componente estacional es bastante claro y repetitivo, lo que confirma un patrón de estacionalidad constante a lo largo de los años. La estacionalidad se mantiene en una amplitud relativamente estable, lo que indica que los patrones repetitivos son predecibles y consistentes.</p>
+<p>Los residuales son relativamente pequeños y están distribuidos de manera aleatoria, lo cual indica que la descomposición capturó adecuadamente tanto la tendencia como la estacionalidad.</p>
+</div>
+</div>
+<div id="descomposición-multiplicativa" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Descomposición Multiplicativa<a href="preprocesamiento-y-visualización.html#descomposición-multiplicativa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La descomposición multiplicativa es una técnica utilizada en series temporales para descomponer la serie en varios componentes similar a la descomposición aditiva pero en este caso los componentes que explican la serie son multiplicados.</p>
+<p><span class="math display">\[
+Observado = Tendencia\quad x\quad Estacionalidad \quad x \quad Componente Aleatorio
+\]</span></p>
+<div id="descomposición-multiplicativa-avr" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Descomposición Multiplicativa AVR<a href="preprocesamiento-y-visualización.html#descomposición-multiplicativa-avr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="preprocesamiento-y-visualización.html#cb21-1" tabindex="-1"></a><span class="co"># Descomposición multiplicativa</span></span>
+<span id="cb21-2"><a href="preprocesamiento-y-visualización.html#cb21-2" tabindex="-1"></a>descomposicion_multiplicativa_AVR <span class="ot">&lt;-</span> <span class="fu">decompose</span>(AVR_ts, <span class="at">type =</span> <span class="st">&quot;multiplicative&quot;</span>)</span>
+<span id="cb21-3"><a href="preprocesamiento-y-visualización.html#cb21-3" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="preprocesamiento-y-visualización.html#cb21-4" tabindex="-1"></a><span class="co"># Graficar los componentes</span></span>
+<span id="cb21-5"><a href="preprocesamiento-y-visualización.html#cb21-5" tabindex="-1"></a><span class="fu">autoplot</span>(descomposicion_multiplicativa_AVR)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>La tendencia de la serie, que parece mostrar una disminución en algún punto de 2022, seguida de una ligera recuperación al igual que en la descomposición aditiva.</p>
+<p>La componente estacional muestra un patrón repetitivo en intervalos regulares, lo cual es típico en series de tiempo con estacionalidad fuerte.</p>
+<p>La parte residual o aleatoria, que contiene la variación que no puede ser explicada por la tendencia o la estacionalidad.</p>
+</div>
+<div id="descomposición-multiplicativa-line-ups" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Descomposición Multiplicativa Line UPS<a href="preprocesamiento-y-visualización.html#descomposición-multiplicativa-line-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="preprocesamiento-y-visualización.html#cb22-1" tabindex="-1"></a><span class="co"># Descomposición multiplicativa</span></span>
+<span id="cb22-2"><a href="preprocesamiento-y-visualización.html#cb22-2" tabindex="-1"></a>descomposicion_multiplicativa_Line_UPS <span class="ot">&lt;-</span> <span class="fu">decompose</span>(Line_UPS_ts, <span class="at">type =</span> <span class="st">&quot;multiplicative&quot;</span>)</span>
+<span id="cb22-3"><a href="preprocesamiento-y-visualización.html#cb22-3" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="preprocesamiento-y-visualización.html#cb22-4" tabindex="-1"></a><span class="co"># Graficar los componentes</span></span>
+<span id="cb22-5"><a href="preprocesamiento-y-visualización.html#cb22-5" tabindex="-1"></a><span class="fu">autoplot</span>(descomposicion_multiplicativa_Line_UPS)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>La tendencia en esta descomposición sigue una forma similar a la tendencia de la descomposición aditiva, con una disminución hacia 2022 y luego una recuperación gradual.</p>
+<p>La estacionalidad en esta gráfica tiene valores en un rango de 0.5 a 2.5, manteniendo un patrón de repetición similar a la descomposición aditiva.</p>
+<p>Los residuos en esta descomposición son más contenidos y varían entre 0 y 2, mostrando valores más pequeños.</p>
+</div>
+<div id="descomposición-multiplicativa-online-ups" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Descomposición Multiplicativa Online UPS<a href="preprocesamiento-y-visualización.html#descomposición-multiplicativa-online-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="preprocesamiento-y-visualización.html#cb23-1" tabindex="-1"></a><span class="co"># Descomposición multiplicativa</span></span>
+<span id="cb23-2"><a href="preprocesamiento-y-visualización.html#cb23-2" tabindex="-1"></a>descomposicion_multiplicativa_Online_UPS <span class="ot">&lt;-</span> <span class="fu">decompose</span>(Online_UPS_ts, <span class="at">type =</span> <span class="st">&quot;multiplicative&quot;</span>)</span>
+<span id="cb23-3"><a href="preprocesamiento-y-visualización.html#cb23-3" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="preprocesamiento-y-visualización.html#cb23-4" tabindex="-1"></a><span class="co"># Graficar los componentes</span></span>
+<span id="cb23-5"><a href="preprocesamiento-y-visualización.html#cb23-5" tabindex="-1"></a><span class="fu">autoplot</span>(descomposicion_multiplicativa_Online_UPS)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>La tendencia sigue una trayectoria creciente, similar a la descomposición aditiva, lo que confirma un crecimiento sostenido en las ventas de Online UPS desde 2021 hasta 2024. Esto indica un aumento en la demanda de los productos a lo largo del tiempo.</p>
+<p>La estacionalidad se representa en términos de proporciones con variaziones entre 0 y 2, mostrando que las variaciones estacionales afectan las ventas en función del nivel base de la serie.</p>
+<p>Los residuos en el modelo multiplicativo también muestran valores cercanos a uno, lo que indica que el modelo explica bien las variaciones en la serie. Sin embargo, algunos picos en los residuos podrían representar eventos anómalos o fluctuaciones que no se explican completamente por la tendencia o la estacionalidad.</p>
+</div>
+<div id="descomposición-multiplicativa-storage-battery" class="section level3 hasAnchor" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Descomposición Multiplicativa Storage Battery<a href="preprocesamiento-y-visualización.html#descomposición-multiplicativa-storage-battery" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="preprocesamiento-y-visualización.html#cb24-1" tabindex="-1"></a><span class="co"># Descomposición multiplicativa</span></span>
+<span id="cb24-2"><a href="preprocesamiento-y-visualización.html#cb24-2" tabindex="-1"></a>descomposicion_multiplicativa_Storage_Battery <span class="ot">&lt;-</span> <span class="fu">decompose</span>(Storage_Battery_ts, <span class="at">type =</span> <span class="st">&quot;multiplicative&quot;</span>)</span>
+<span id="cb24-3"><a href="preprocesamiento-y-visualización.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="preprocesamiento-y-visualización.html#cb24-4" tabindex="-1"></a><span class="co"># Graficar los componentes</span></span>
+<span id="cb24-5"><a href="preprocesamiento-y-visualización.html#cb24-5" tabindex="-1"></a><span class="fu">autoplot</span>(descomposicion_multiplicativa_Storage_Battery)</span></code></pre></div>
+<p><img src="Minilibro-Serie-tiempo_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+La tendencia es marcadamente ascendente, lo cual sugiere un crecimiento continuo en la demanda de baterías de almacenamiento entre 2021 y 2024.</p>
+<p>El patrón estacional sugiere que existen épocas del año donde la demanda de baterías de almacenamiento es consistentemente alta o baja, posiblemente por factores como las estaciones climáticas, eventos industriales o variaciones en la demanda energética.</p>
+<p>Los residuos se mantienen cercanos a 1, lo que indica que el modelo explica bien la mayoría de las fluctuaciones en los datos. Sin embargo, algunos picos en los residuos sugieren eventos atípicos o variaciones puntuales no captadas por la tendencia o la estacionalidad</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estructura-de-los-datos-en-series-de-tiempo.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-preprocesamiento_visualizacion.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Minilibro-Serie-tiempo.pdf", "Minilibro-Serie-tiempo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
