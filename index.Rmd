@@ -20,6 +20,8 @@ github-repo: rstudio/bookdown-demo
 #install.packages("bookdown")
 #install.packages("xlsx")
 #install.packages("forecast")
+#install.packages("dplyr")
+#install.packages("skimr")
 library(tseries)
 library(bookdown)
 library(xlsx)

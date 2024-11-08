@@ -1,4 +1,6 @@
-delete_merged_file: true
+book_filename: "Minilibro.Rmd"
+output_dir: "docs"
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Actividad "
+delete_merged_file: true
