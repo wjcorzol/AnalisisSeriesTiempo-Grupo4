@@ -28,3 +28,5 @@ rezagos-1
 estacionalidad-1
 estructura-de-los-datos-en-series-de-tiempo-actividad2
 descripción-de-la-base-de-datos
+descripción-de-la-base-de-datos1descripcion
+estructura-de-los-datos-en-series-de-tiempo-actividad2-1

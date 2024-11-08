@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="descripción-de-la-base-de-datos.html"><a href="descripción-de-la-base-de-datos.html"><i class="fa fa-check"></i><b>1</b> - Descripción de la Base de Datos</a></li>
+<li class="chapter" data-level="1" data-path="descripción-de-la-base-de-datos1descripcion.html"><a href="descripción-de-la-base-de-datos1descripcion.html"><i class="fa fa-check"></i><b>1</b> Descripción de la Base de Datos{1descripcion}</a></li>
 <li class="chapter" data-level="2" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>2</b> Literature</a></li>
 <li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods</a>
 <ul>
@@ -189,18 +189,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="author"><em>Andrés Monsalve, Luz Angélica Norato y Willy Corzo</em></p>
 <p class="date"><em>2024-11-08</em></p>
 </div>
-<div id="descripción-de-la-base-de-datos" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Actividad 1</span> - Descripción de la Base de Datos<a href="descripción-de-la-base-de-datos.html#descripción-de-la-base-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="descripción-de-la-base-de-datos1descripcion" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Actividad 1</span> Descripción de la Base de Datos{1descripcion}<a href="descripción-de-la-base-de-datos1descripcion.html#descripción-de-la-base-de-datos1descripcion" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><br></p>
 <p>La base de datos que tenemos disponible contiene información detallada sobre las ventas de una empresa dedicada a la comercialización de dispositivos de almacenamiento de energía. Este conjunto de datos abarca un periodo de 175 semanas, desde enero de 2021 hasta mayo de 2024. Contamos con la autorización de la empresa para utilizar esta base de datos exclusivamente con fines académicos.</p>
 <p>Inicialmente, la base de datos incluye un total de 475 ítems. Sin embargo, tras realizar un análisis exhaustivo, hemos decidido concentrarnos en los primeros 80 ítems, ya que estos representan el 90.24% de las ventas totales registradas en el año 2023. Además, la base de datos proporciona información sobre siete puntos de acogida de inventario de la empresa, pero para los objetivos de esta clase, nos limitaremos a utilizar únicamente el total de las ventas.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="descripción-de-la-base-de-datos.html#cb1-1" tabindex="-1"></a><span class="co">#leer datos</span></span>
-<span id="cb1-2"><a href="descripción-de-la-base-de-datos.html#cb1-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Ventas_t.csv&quot;</span>,<span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb1-3"><a href="descripción-de-la-base-de-datos.html#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="descripción-de-la-base-de-datos.html#cb1-4" tabindex="-1"></a>data<span class="sc">$</span>Fecha <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(data<span class="sc">$</span>Fecha, <span class="at">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</span>
-<span id="cb1-5"><a href="descripción-de-la-base-de-datos.html#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="descripción-de-la-base-de-datos.html#cb1-6" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="descripción-de-la-base-de-datos.html#cb1-7" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="descripción-de-la-base-de-datos1descripcion.html#cb1-1" tabindex="-1"></a><span class="co">#leer datos</span></span>
+<span id="cb1-2"><a href="descripción-de-la-base-de-datos1descripcion.html#cb1-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Ventas_t.csv&quot;</span>,<span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb1-3"><a href="descripción-de-la-base-de-datos1descripcion.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="descripción-de-la-base-de-datos1descripcion.html#cb1-4" tabindex="-1"></a>data<span class="sc">$</span>Fecha <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(data<span class="sc">$</span>Fecha, <span class="at">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</span>
+<span id="cb1-5"><a href="descripción-de-la-base-de-datos1descripcion.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="descripción-de-la-base-de-datos1descripcion.html#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="descripción-de-la-base-de-datos1descripcion.html#cb1-7" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
 <pre><code>##        Fecha Item.1 Item.2 Item.3 Item.4 Item.5 Item.6 Item.7 Item.8 Item.9
 ## 1 2021-01-10    884    716    548      1      4     50      4      7     52
 ## 2 2021-01-17   3150   3400   2166      0     14     55     18     40     70
