@@ -1,0 +1,33 @@
+# - Descripción de la Base de Datos
+<br>
+
+La base de datos que tenemos disponible contiene información detallada sobre las ventas de una empresa dedicada a la comercialización de dispositivos de almacenamiento de energía. Este conjunto de datos abarca un periodo de 175 semanas, desde enero de 2021 hasta mayo de 2024. Contamos con la autorización de la empresa para utilizar esta base de datos exclusivamente con fines académicos.
+
+Inicialmente, la base de datos incluye un total de 475 ítems. Sin embargo, tras realizar un análisis exhaustivo, hemos decidido concentrarnos en los primeros 80 ítems, ya que estos representan el 90.24% de las ventas totales registradas en el año 2023. Además, la base de datos proporciona información sobre siete puntos de acogida de inventario de la empresa, pero para los objetivos de esta clase, nos limitaremos a utilizar únicamente el total de las ventas.
+
+```{r}
+#leer datos
+data <- read.csv("Ventas_t.csv",header = TRUE, sep = ";")
+
+data$Fecha <- as.Date(data$Fecha, format = "%d/%m/%Y")
+
+
+head(data)
+
+```
+<br>
+
+El propósito de trabajar con esta base de datos es llevar a cabo predicciones de ventas, considerando diversos factores temporales. Esto implica un análisis de patrones estacionales, tendencias históricas y otros elementos temporales que pueden influir en el comportamiento de las ventas.
+
+Un desafío significativo que presenta nuestra base de datos es la elevada cantidad de ceros, dado que la empresa se enfoca principalmente en la venta a mayoristas, lo que significa que no todos los ítems generan ventas de forma semanal. Este aspecto deberá ser considerado al aplicar técnicas de análisis de series de tiempo, ya que puede afectar la precisión de los modelos predictivos.
+
+A través de este análisis, se busca no solo comprender mejor las dinámicas de ventas de la empresa, sino también desarrollar habilidades en el manejo y la interpretación de series temporales en un contexto práctico.
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+
+save(data, file = "data.RData")
+```

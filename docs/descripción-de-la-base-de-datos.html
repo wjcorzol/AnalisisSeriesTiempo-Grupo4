@@ -123,29 +123,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -163,7 +140,7 @@ div.csl-indent {
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="descripción-de-la-base-de-datos.html"><a href="descripción-de-la-base-de-datos.html"><i class="fa fa-check"></i><b>1</b> - Descripción de la Base de Datos</a></li>
 <li class="chapter" data-level="2" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>2</b> Literature</a></li>
 <li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods</a>
 <ul>
@@ -212,188 +189,86 @@ div.csl-indent {
 <p class="author"><em>Andrés Monsalve, Luz Angélica Norato y Willy Corzo</em></p>
 <p class="date"><em>2024-11-08</em></p>
 </div>
-<div id="intro" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Actividad1</span> Introduction<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>You can label chapter and section titles using <code>{#label}</code> after them, e.g., we can reference Chapter <a href="intro.html#intro">1</a>. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter <a href="methods.html#methods">3</a>.</p>
-<p>Figures and tables with captions will be placed in <code>figure</code> and <code>table</code> environments, respectively.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, .<span class="dv">1</span>, .<span class="dv">1</span>))</span>
-<span id="cb1-2"><a href="intro.html#cb1-2" tabindex="-1"></a><span class="fu">plot</span>(pressure, <span class="at">type =</span> <span class="st">&#39;b&#39;</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:nice-fig"></span>
-<img src="Minilibro_files/figure-html/nice-fig-1.png" alt="Here is a nice figure!" width="80%" />
-<p class="caption">
-Figure 1.1: Here is a nice figure!
-</p>
-</div>
-<p>Reference a figure by its code chunk label with the <code>fig:</code> prefix, e.g., see Figure <a href="intro.html#fig:nice-fig">1.1</a>. Similarly, you can reference tables generated from <code>knitr::kable()</code>, e.g., see Table <a href="intro.html#tab:nice-tab">1.1</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb2-2"><a href="intro.html#cb2-2" tabindex="-1"></a>  <span class="fu">head</span>(iris, <span class="dv">20</span>), <span class="at">caption =</span> <span class="st">&#39;Here is a nice table!&#39;</span>,</span>
-<span id="cb2-3"><a href="intro.html#cb2-3" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
-<span id="cb2-4"><a href="intro.html#cb2-4" tabindex="-1"></a>)</span></code></pre></div>
-<table>
-<caption><span id="tab:nice-tab">Table 1.1: </span>Here is a nice table!</caption>
-<thead>
-<tr class="header">
-<th align="right">Sepal.Length</th>
-<th align="right">Sepal.Width</th>
-<th align="right">Petal.Length</th>
-<th align="right">Petal.Width</th>
-<th align="left">Species</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">5.1</td>
-<td align="right">3.5</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.9</td>
-<td align="right">3.0</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.7</td>
-<td align="right">3.2</td>
-<td align="right">1.3</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.6</td>
-<td align="right">3.1</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.0</td>
-<td align="right">3.6</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.4</td>
-<td align="right">3.9</td>
-<td align="right">1.7</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.6</td>
-<td align="right">3.4</td>
-<td align="right">1.4</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.0</td>
-<td align="right">3.4</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.4</td>
-<td align="right">2.9</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.9</td>
-<td align="right">3.1</td>
-<td align="right">1.5</td>
-<td align="right">0.1</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.4</td>
-<td align="right">3.7</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.8</td>
-<td align="right">3.4</td>
-<td align="right">1.6</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.8</td>
-<td align="right">3.0</td>
-<td align="right">1.4</td>
-<td align="right">0.1</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.3</td>
-<td align="right">3.0</td>
-<td align="right">1.1</td>
-<td align="right">0.1</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.8</td>
-<td align="right">4.0</td>
-<td align="right">1.2</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.7</td>
-<td align="right">4.4</td>
-<td align="right">1.5</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.4</td>
-<td align="right">3.9</td>
-<td align="right">1.3</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.1</td>
-<td align="right">3.5</td>
-<td align="right">1.4</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.7</td>
-<td align="right">3.8</td>
-<td align="right">1.7</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.1</td>
-<td align="right">3.8</td>
-<td align="right">1.5</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-</tbody>
-</table>
-<p>You can write citations, too. For example, we are using the <strong>bookdown</strong> package <span class="citation">(<a href="#ref-R-bookdown">Xie 2024</a>)</span> in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(<a href="#ref-xie2015">Xie 2015</a>)</span>.</p>
+<div id="descripción-de-la-base-de-datos" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Actividad1</span> - Descripción de la Base de Datos<a href="descripción-de-la-base-de-datos.html#descripción-de-la-base-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><br></p>
+<p>La base de datos que tenemos disponible contiene información detallada sobre las ventas de una empresa dedicada a la comercialización de dispositivos de almacenamiento de energía. Este conjunto de datos abarca un periodo de 175 semanas, desde enero de 2021 hasta mayo de 2024. Contamos con la autorización de la empresa para utilizar esta base de datos exclusivamente con fines académicos.</p>
+<p>Inicialmente, la base de datos incluye un total de 475 ítems. Sin embargo, tras realizar un análisis exhaustivo, hemos decidido concentrarnos en los primeros 80 ítems, ya que estos representan el 90.24% de las ventas totales registradas en el año 2023. Además, la base de datos proporciona información sobre siete puntos de acogida de inventario de la empresa, pero para los objetivos de esta clase, nos limitaremos a utilizar únicamente el total de las ventas.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="descripción-de-la-base-de-datos.html#cb1-1" tabindex="-1"></a><span class="co">#leer datos</span></span>
+<span id="cb1-2"><a href="descripción-de-la-base-de-datos.html#cb1-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Ventas_t.csv&quot;</span>,<span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb1-3"><a href="descripción-de-la-base-de-datos.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="descripción-de-la-base-de-datos.html#cb1-4" tabindex="-1"></a>data<span class="sc">$</span>Fecha <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(data<span class="sc">$</span>Fecha, <span class="at">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</span>
+<span id="cb1-5"><a href="descripción-de-la-base-de-datos.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="descripción-de-la-base-de-datos.html#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="descripción-de-la-base-de-datos.html#cb1-7" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
+<pre><code>##        Fecha Item.1 Item.2 Item.3 Item.4 Item.5 Item.6 Item.7 Item.8 Item.9
+## 1 2021-01-10    884    716    548      1      4     50      4      7     52
+## 2 2021-01-17   3150   3400   2166      0     14     55     18     40     70
+## 3 2021-01-24      0      0      5      7      1     14     13      9     13
+## 4 2021-01-31   4296   3596   2902      1     43    139      3     47     78
+## 5 2021-02-07      0      0      0      0      0     25      0      0     17
+## 6 2021-02-14   1336   2060   1396      9     40     60      0      0     34
+##   Item.10 Item.11 Item.12 Item.13 Item.14 Item.15 Item.16 Item.17 Item.18
+## 1     708      18       0      42      64     224       0      45       0
+## 2    1788     352       5       0       8     166      34     131       0
+## 3       0     136       0      88       0      15      60      36       0
+## 4     400     328      10      40      10      91      20      35       0
+## 5       0     128       0      34       0      27       0       0       0
+## 6     792       4      13      44      16      73       0      -1       0
+##   Item.19 Item.20 Item.21 Item.22 Item.23 Item.24 Item.25 Item.26 Item.27
+## 1       0       7      17       6       1       0       0       0       0
+## 2       2      14       2     121       0      30       0      12       0
+## 3       1       0       2       0       0       0       0      24       0
+## 4       0      24       0      90       0     200       0     159       0
+## 5       0       0       0      15       0     150       0      55       0
+## 6       0       0       0       0       1     200       0       0       0
+##   Item.28 Item.29 Item.30 Item.31 Item.32 Item.33 Item.34 Item.35 Item.36
+## 1       0       0       0      21       6       0       5       0       0
+## 2       0       0       3       0       0       0      34       0       0
+## 3       0       0       9       0       2       1       9       0       0
+## 4       0       0      91       0       0       2      26       0       0
+## 5       0       0       0       0       0       0       1      38       0
+## 6       4       0       0       0       0       1      32       0       0
+##   Item.37 Item.38 Item.39 Item.40 Item.41 Item.42 Item.43 Item.44 Item.45
+## 1       0       3      72       0       0      27      22       1       0
+## 2       0       0     260       0       0       0       2       0       0
+## 3       0       0      64       0       0       0       0       0       0
+## 4       0       0     128       0       0       0       0       0       0
+## 5       0       0       0       0       0       2       0       0       0
+## 6       0       0     104       0       0       1       0       0       0
+##   Item.46 Item.47 Item.48 Item.49 Item.50 Item.51 Item.52 Item.53 Item.54
+## 1       0       0       0       0       5       0       0       0       0
+## 2       0       0       0     140       0       0       0       0       0
+## 3       0       0       0     100       0       2       0       0       0
+## 4       0       0       0     240       1       6       0       0       0
+## 5       0       0       0       0       0       0       0       0       0
+## 6       0    1224       0     360       0      30       0       0    1840
+##   Item.55 Item.56 Item.57 Item.58 Item.59 Item.60 Item.61 Item.62 Item.63
+## 1       0       0       0       0       0       0       0      12       0
+## 2       0       0       0       0       0       0       0     252       0
+## 3       0       0       0       0       0       7       0     144       0
+## 4       0       0       0       0      10       0       0     824       0
+## 5       0       0       0       0       0       0       0       0       0
+## 6       0       0       0       0       0       1     560     476       0
+##   Item.64 Item.65 Item.66 Item.67 Item.68 Item.69 Item.70 Item.71 Item.72
+## 1       0       0       0       0       0       0       0       0       0
+## 2       0       2       0       0       0       0       0       0       0
+## 3       0       0       0     190       0       0       0       0       0
+## 4       0       0       0       1       0       0       0       0       0
+## 5       0       0       0     999       0       0       0       0       0
+## 6       0       0       0     368       0       0       0       0       0
+##   Item.73 Item.74 Item.75 Item.76 Item.77 Item.78 Item.79 Item.80
+## 1       2       0       0       0       0       0       0       0
+## 2       0       0       0       6       0       0       0       2
+## 3       0       0       0       0       0     220       0       0
+## 4       0       0       0       0       0    1000       0       0
+## 5       0       0       0       0       0       0       0       0
+## 6       0       0       0       0       0     368       0       0</code></pre>
+<p><br></p>
+<p>El propósito de trabajar con esta base de datos es llevar a cabo predicciones de ventas, considerando diversos factores temporales. Esto implica un análisis de patrones estacionales, tendencias históricas y otros elementos temporales que pueden influir en el comportamiento de las ventas.</p>
+<p>Un desafío significativo que presenta nuestra base de datos es la elevada cantidad de ceros, dado que la empresa se enfoca principalmente en la venta a mayoristas, lo que significa que no todos los ítems generan ventas de forma semanal. Este aspecto deberá ser considerado al aplicar técnicas de análisis de series de tiempo, ya que puede afectar la precisión de los modelos predictivos.</p>
+<p>A través de este análisis, se busca no solo comprender mejor las dinámicas de ventas de la empresa, sino también desarrollar habilidades en el manejo y la interpretación de series temporales en un contexto práctico.</p>
 
-</div>
-<h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-xie2015" class="csl-entry">
-Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
-</div>
-<div id="ref-R-bookdown" class="csl-entry">
-———. 2024. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
-</div>
 </div>
             </section>
 
@@ -432,7 +307,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-DescripcionBaseDatos.Rmd",
 "text": "Edit"
 },
 "history": {

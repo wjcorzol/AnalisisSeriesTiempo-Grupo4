@@ -26,3 +26,5 @@ análisis-de-los-datos-en-el-tiempo-1
 media-móviles-1
 rezagos-1
 estacionalidad-1
+estructura-de-los-datos-en-series-de-tiempo-actividad2
+descripción-de-la-base-de-datos
