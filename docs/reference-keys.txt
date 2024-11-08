@@ -16,3 +16,13 @@ análisis-de-los-datos-en-el-tiempo
 media-móviles
 rezagos
 estacionalidad
+tab:unnamed-chunk-1
+tab:unnamed-chunk-12
+estructura-de-los-datos-en-series-de-tiempo
+url-your-book-url-like-httpsbookdown.orgyihuibookdown-1
+entendimiento-de-los-datos-1
+preparación-de-los-datos-1
+análisis-de-los-datos-en-el-tiempo-1
+media-móviles-1
+rezagos-1
+estacionalidad-1

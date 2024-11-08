@@ -42,5 +42,5 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 
-
+save(data, file = "data.RData")
 ```

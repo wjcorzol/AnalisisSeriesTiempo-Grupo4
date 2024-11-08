@@ -1,108 +1,39 @@
---- 
-title: "Actividad Grupo 4 - Análisis Series de Tiempo"
-author: "Andrés Monsalve, Luz Angélica Norato y Willy Corzo"
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: book
-bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
-description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::gitbook,
-  set in the _output.yml file.
-link-citations: yes
-github-repo: rstudio/bookdown-demo
----
-
+# - Estructura de los datos en series de tiempo
 ```{r setup, include=FALSE}
-#install.packages("tseries")
-#install.packages("bookdown")
-#install.packages("xlsx")
-#install.packages("forecast")
-#install.packages("dplyr")
-#install.packages("skimr")
-#install.packages("usethis")
-
-library(tseries)
-library(bookdown)
-library(xlsx)
-library(dplyr)
+load("data.RData")
 library(skimr)
+library(dplyr)
 library(ggplot2)
 library(forecast)
 ```
 
-<br>
 
-# Actividad 1 - Descripción de la Base de Datos
-
-<br>
-
-La base de datos que tenemos disponible contiene información detallada sobre las ventas de una empresa dedicada a la comercialización de dispositivos de almacenamiento de energía. Este conjunto de datos abarca un periodo de 175 semanas, desde enero de 2021 hasta mayo de 2024. Contamos con la autorización de la empresa para utilizar esta base de datos exclusivamente con fines académicos.
-
-Inicialmente, la base de datos incluye un total de 475 ítems. Sin embargo, tras realizar un análisis exhaustivo, hemos decidido concentrarnos en los primeros 80 ítems, ya que estos representan el 90.24% de las ventas totales registradas en el año 2023. Además, la base de datos proporciona información sobre siete puntos de acogida de inventario de la empresa, pero para los objetivos de esta clase, nos limitaremos a utilizar únicamente el total de las ventas.
-
-<br>
-
-```{r comment=NA}
-#leer datos
-data <- read.csv("Ventas_t.csv",header = TRUE, sep = ";")
-
-data$Fecha <- as.Date(data$Fecha, format = "%d/%m/%Y")
-
-
-head(data)
-```
-
-<br>
-
-El propósito de trabajar con esta base de datos es llevar a cabo predicciones de ventas, considerando diversos factores temporales. Esto implica un análisis de patrones estacionales, tendencias históricas y otros elementos temporales que pueden influir en el comportamiento de las ventas.
-
-Un desafío significativo que presenta nuestra base de datos es la elevada cantidad de ceros, dado que la empresa se enfoca principalmente en la venta a mayoristas, lo que significa que no todos los ítems generan ventas de forma semanal. Este aspecto deberá ser considerado al aplicar técnicas de análisis de series de tiempo, ya que puede afectar la precisión de los modelos predictivos.
-
-A través de este análisis, se busca no solo comprender mejor las dinámicas de ventas de la empresa, sino también desarrollar habilidades en el manejo y la interpretación de series temporales en un contexto práctico.
-
-<br>
-
-# Actividad 2 - Estructura de los datos en series de tiempo
-
-<br>
-
-## Entendimiento de los Datos
+##  Entendimiento de los Datos
 
 ```{r}
 skim(data)
 ```
-
 <br>
-
 Al analizar los estadísticos presentados se puede entender que:
 
-1.  No existen registros faltantes dentro del data set
+1. No existen registros faltantes dentro del data set
 2.  Existen items con una gran cantidad de registros en 0, se debe pensar en agrupar items por categorías o características similares
-3.  Dentro de la base de datos se encuentran registros negativos que obedecen a las devoluciones
+3. Dentro de la base de datos se encuentran registros negativos que obedecen a las devoluciones
 
 ## Preparación de los Datos
-
-<br>
 
 Como se menciono anteriormente sera necesario realizar algunos procedimientos previos antes de comenzar a realizar analisis, dentro de los procedimientos sera necesario realizar una limpieza o imputacion de datos y crear agrupaciones por categorias de items.
 
 Dentro del dataset se encuentran registros negativos que corresponden a devoluciones de productos, nos centraremos en las ventas por lo tanto estos datos seran imputados con ceros por ser considerados anomalos.
-
-<br>
 
 ```{r}
 #Imputacion de datos negativos que corresponden a devoluciones
 
 ventas = data
 ventas[ventas < 0] = 0
-ventas
+head(ventas)
 ```
-
 <br>
-
 Para la agrupación de los datos se identificarán las categorías de los ítems
 
 **Grupo AVR:** Los siguientes Items se identifican como AVR
@@ -435,5 +366,11 @@ Para el grupo de items de Storage battery no se alcanza a identificar patrones m
 seasonplot(Storage_Battery_ts, 
            col = rainbow(4), 
            year.labels = TRUE) 
+```
+```{r}
+save(AVR_ts, file = "AVR_ts.RData")
+save(Line_UPS_ts, file = "Line_UPS_ts.RData")
+save(Online_UPS_ts, file = "Online_UPS_ts.RData")
+save(Storage_Battery_ts, file = "Storage_Battery_ts.RData")
 ```
 
