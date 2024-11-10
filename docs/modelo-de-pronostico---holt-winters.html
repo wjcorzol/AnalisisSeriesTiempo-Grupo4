@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Actividad Grupo 4 - Análisis Series de Tiempo</title>
-  <meta name="description" content="Actividad Grupo 4 - Análisis Series de Tiempo" />
+  <title>Actividad 4 Modelo de pronostico - Holt Winters | Actividad Grupo 4 - Análisis Series de Tiempo</title>
+  <meta name="description" content="Actividad 4 Modelo de pronostico - Holt Winters | Actividad Grupo 4 - Análisis Series de Tiempo" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Actividad Grupo 4 - Análisis Series de Tiempo" />
+  <meta property="og:title" content="Actividad 4 Modelo de pronostico - Holt Winters | Actividad Grupo 4 - Análisis Series de Tiempo" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Actividad Grupo 4 - Análisis Series de Tiempo" />
+  <meta name="twitter:title" content="Actividad 4 Modelo de pronostico - Holt Winters | Actividad Grupo 4 - Análisis Series de Tiempo" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="estructura-de-los-datos-en-series-de-tiempo.html"/>
+<link rel="prev" href="preprocesamiento-y-visualización.html"/>
+<link rel="next" href="graficas-de-series-de-tiempo.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -185,11 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1.1" data-path="modelo-de-pronostico---holt-winters.html"><a href="modelo-de-pronostico---holt-winters.html#suavizado-exponecial"><i class="fa fa-check"></i><b>4.1.1</b> Suavizado exponecial</a></li>
 <li class="chapter" data-level="4.1.2" data-path="modelo-de-pronostico---holt-winters.html"><a href="modelo-de-pronostico---holt-winters.html#prediccion-avr-1"><i class="fa fa-check"></i><b>4.1.2</b> Prediccion AVR</a></li>
 <li class="chapter" data-level="4.1.3" data-path="modelo-de-pronostico---holt-winters.html"><a href="modelo-de-pronostico---holt-winters.html#line-ups"><i class="fa fa-check"></i><b>4.1.3</b> Line UPS</a></li>
-<li class="chapter" data-level="4.1.4" data-path="modelo-de-pronostico---holt-winters.html"><a href="modelo-de-pronostico---holt-winters.html#prediccion-line-ups"><i class="fa fa-check"></i><b>4.1.4</b> Prediccion Line UPS</a></li>
-<li class="chapter" data-level="4.1.5" data-path="modelo-de-pronostico---holt-winters.html"><a href="modelo-de-pronostico---holt-winters.html#online-ups"><i class="fa fa-check"></i><b>4.1.5</b> Online UPS</a></li>
-<li class="chapter" data-level="4.1.6" data-path="modelo-de-pronostico---holt-winters.html"><a href="modelo-de-pronostico---holt-winters.html#prediccion-online-ups"><i class="fa fa-check"></i><b>4.1.6</b> Prediccion Online UPS</a></li>
-<li class="chapter" data-level="4.1.7" data-path="modelo-de-pronostico---holt-winters.html"><a href="modelo-de-pronostico---holt-winters.html#storage-battery"><i class="fa fa-check"></i><b>4.1.7</b> Storage Battery</a></li>
-<li class="chapter" data-level="4.1.8" data-path="modelo-de-pronostico---holt-winters.html"><a href="modelo-de-pronostico---holt-winters.html#prediccion-storage-battery"><i class="fa fa-check"></i><b>4.1.8</b> Prediccion Storage Battery</a></li>
+<li class="chapter" data-level="4.1.4" data-path="modelo-de-pronostico---holt-winters.html"><a href="modelo-de-pronostico---holt-winters.html#online-ups"><i class="fa fa-check"></i><b>4.1.4</b> Online UPS</a></li>
+<li class="chapter" data-level="4.1.5" data-path="modelo-de-pronostico---holt-winters.html"><a href="modelo-de-pronostico---holt-winters.html#prediccion-online-ups"><i class="fa fa-check"></i><b>4.1.5</b> Prediccion Online UPS</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html"><i class="fa fa-check"></i><b>5</b> Graficas de series de tiempo</a>
@@ -210,7 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.11.2" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#avr-1"><i class="fa fa-check"></i><b>5.11.2</b> AVR</a></li>
 <li class="chapter" data-level="5.11.3" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#line-ups-1"><i class="fa fa-check"></i><b>5.11.3</b> Line UPS</a></li>
 <li class="chapter" data-level="5.11.4" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#online-ups-1"><i class="fa fa-check"></i><b>5.11.4</b> Online UPS</a></li>
-<li class="chapter" data-level="5.11.5" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#storage-battery-1"><i class="fa fa-check"></i><b>5.11.5</b> Storage Battery</a></li>
+<li class="chapter" data-level="5.11.5" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#storage-battery"><i class="fa fa-check"></i><b>5.11.5</b> Storage Battery</a></li>
 </ul></li>
 <li class="chapter" data-level="5.12" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#conclusión"><i class="fa fa-check"></i><b>5.12</b> Conclusión:</a></li>
 <li class="chapter" data-level="5.13" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#analisis-de-la-categoria-avr"><i class="fa fa-check"></i><b>5.13</b> ANALISIS DE LA CATEGORIA AVR</a>
@@ -234,11 +231,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.18.2" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#avr-2"><i class="fa fa-check"></i><b>5.18.2</b> AVR</a></li>
 <li class="chapter" data-level="5.18.3" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#prediccion-avr-2"><i class="fa fa-check"></i><b>5.18.3</b> Prediccion AVR</a></li>
 <li class="chapter" data-level="5.18.4" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#line-ups-2"><i class="fa fa-check"></i><b>5.18.4</b> Line UPS</a></li>
-<li class="chapter" data-level="5.18.5" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#prediccion-line-ups-1"><i class="fa fa-check"></i><b>5.18.5</b> Prediccion Line UPS</a></li>
+<li class="chapter" data-level="5.18.5" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#prediccion-line-ups"><i class="fa fa-check"></i><b>5.18.5</b> Prediccion Line UPS</a></li>
 <li class="chapter" data-level="5.18.6" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#online-ups-2"><i class="fa fa-check"></i><b>5.18.6</b> Online UPS</a></li>
 <li class="chapter" data-level="5.18.7" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#prediccion-online-ups-1"><i class="fa fa-check"></i><b>5.18.7</b> Prediccion Online UPS</a></li>
-<li class="chapter" data-level="5.18.8" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#storage-battery-2"><i class="fa fa-check"></i><b>5.18.8</b> Storage Battery</a></li>
-<li class="chapter" data-level="5.18.9" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#prediccion-storage-battery-1"><i class="fa fa-check"></i><b>5.18.9</b> Prediccion Storage Battery</a></li>
+<li class="chapter" data-level="5.18.8" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#storage-battery-1"><i class="fa fa-check"></i><b>5.18.8</b> Storage Battery</a></li>
+<li class="chapter" data-level="5.18.9" data-path="graficas-de-series-de-tiempo.html"><a href="graficas-de-series-de-tiempo.html#prediccion-storage-battery"><i class="fa fa-check"></i><b>5.18.9</b> Prediccion Storage Battery</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -261,99 +258,168 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Actividad Grupo 4 - Análisis Series de Tiempo</h1>
-<p class="author"><em>Andrés Monsalve, Luz Angélica Norato y Willy Corzo</em></p>
-<p class="date"><em>2024-11-10</em></p>
+<div id="modelo-de-pronostico---holt-winters" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Actividad 4</span> Modelo de pronostico - Holt Winters<a href="modelo-de-pronostico---holt-winters.html#modelo-de-pronostico---holt-winters" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="prediccion-avr" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Prediccion AVR<a href="modelo-de-pronostico---holt-winters.html#prediccion-avr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="suavizado-exponecial" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Suavizado exponecial<a href="modelo-de-pronostico---holt-winters.html#suavizado-exponecial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="modelo-de-pronostico---holt-winters.html#cb1-1" tabindex="-1"></a><span class="co"># Suavizamiento exponencial</span></span>
+<span id="cb1-2"><a href="modelo-de-pronostico---holt-winters.html#cb1-2" tabindex="-1"></a>HW_AVR <span class="ot">&lt;-</span> <span class="fu">HoltWinters</span>(AVR_ts)</span>
+<span id="cb1-3"><a href="modelo-de-pronostico---holt-winters.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="modelo-de-pronostico---holt-winters.html#cb1-4" tabindex="-1"></a><span class="co"># Visualizar el suavizamiento</span></span>
+<span id="cb1-5"><a href="modelo-de-pronostico---holt-winters.html#cb1-5" tabindex="-1"></a><span class="fu">plot</span>(HW_AVR)</span></code></pre></div>
+<p><img src="Minilibro_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<br></p>
 </div>
-<div id="descripción-de-la-base-de-datos" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Actividad 1</span> - Descripción de la Base de Datos<a href="index.html#descripción-de-la-base-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="prediccion-avr-1" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Prediccion AVR<a href="modelo-de-pronostico---holt-winters.html#prediccion-avr-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="modelo-de-pronostico---holt-winters.html#cb2-1" tabindex="-1"></a>NextYear_AVR <span class="ot">=</span> <span class="fu">forecast</span>(HW_AVR, <span class="at">h=</span><span class="dv">12</span>)</span>
+<span id="cb2-2"><a href="modelo-de-pronostico---holt-winters.html#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="modelo-de-pronostico---holt-winters.html#cb2-3" tabindex="-1"></a>NextYear_AVR</span></code></pre></div>
+<pre><code>##          Point Forecast      Lo 80     Hi 80      Lo 95     Hi 95
+## 2024.365       41.19232 -4286.0648  4368.449 -6576.7763  6659.161
+## 2024.385      849.93266 -3477.3244  5177.190 -5768.0359  7467.901
+## 2024.404     -173.43742 -4500.6945  4153.820 -6791.4060  6444.531
+## 2024.423     5282.41748   955.1604  9609.675 -1335.5511 11900.386
+## 2024.442     -174.97486 -4502.2319  4152.282 -6792.9434  6442.994
+## 2024.462      584.40235 -3742.8547  4911.659 -6033.5662  7202.371
+## 2024.481     2997.66301 -1329.5941  7324.920 -3620.3056  9615.632
+## 2024.500     5889.22933  1561.9723 10216.486  -728.7393 12507.198
+## 2024.519     -352.23465 -4679.4917  3975.022 -6970.2032  6265.734
+## 2024.538     5333.34083  1006.0838  9660.598 -1284.6278 11951.309
+## 2024.558      226.62297 -4100.6341  4553.880 -6391.3456  6844.592
+## 2024.577     2516.25992 -1810.9971  6843.517 -4101.7087  9134.229</code></pre>
 <p><br></p>
-<p>La base de datos que tenemos disponible contiene información detallada sobre las ventas de una empresa dedicada a la comercialización de dispositivos de almacenamiento de energía. Este conjunto de datos abarca un periodo de 175 semanas, desde enero de 2021 hasta mayo de 2024. Contamos con la autorización de la empresa para utilizar esta base de datos exclusivamente con fines académicos.</p>
-<p>Inicialmente, la base de datos incluye un total de 475 ítems. Sin embargo, tras realizar un análisis exhaustivo, hemos decidido concentrarnos en los primeros 80 ítems, ya que estos representan el 90.24% de las ventas totales registradas en el año 2023. Además, la base de datos proporciona información sobre siete puntos de acogida de inventario de la empresa, pero para los objetivos de esta clase, nos limitaremos a utilizar únicamente el total de las ventas.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="co">#leer datos</span></span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Ventas_t.csv&quot;</span>,<span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="index.html#cb1-4" tabindex="-1"></a>data<span class="sc">$</span>Fecha <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(data<span class="sc">$</span>Fecha, <span class="at">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</span>
-<span id="cb1-5"><a href="index.html#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="index.html#cb1-6" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="index.html#cb1-7" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
-<pre><code>       Fecha Item.1 Item.2 Item.3 Item.4 Item.5 Item.6 Item.7 Item.8 Item.9
-1 2021-01-10    884    716    548      1      4     50      4      7     52
-2 2021-01-17   3150   3400   2166      0     14     55     18     40     70
-3 2021-01-24      0      0      5      7      1     14     13      9     13
-4 2021-01-31   4296   3596   2902      1     43    139      3     47     78
-5 2021-02-07      0      0      0      0      0     25      0      0     17
-6 2021-02-14   1336   2060   1396      9     40     60      0      0     34
-  Item.10 Item.11 Item.12 Item.13 Item.14 Item.15 Item.16 Item.17 Item.18
-1     708      18       0      42      64     224       0      45       0
-2    1788     352       5       0       8     166      34     131       0
-3       0     136       0      88       0      15      60      36       0
-4     400     328      10      40      10      91      20      35       0
-5       0     128       0      34       0      27       0       0       0
-6     792       4      13      44      16      73       0      -1       0
-  Item.19 Item.20 Item.21 Item.22 Item.23 Item.24 Item.25 Item.26 Item.27
-1       0       7      17       6       1       0       0       0       0
-2       2      14       2     121       0      30       0      12       0
-3       1       0       2       0       0       0       0      24       0
-4       0      24       0      90       0     200       0     159       0
-5       0       0       0      15       0     150       0      55       0
-6       0       0       0       0       1     200       0       0       0
-  Item.28 Item.29 Item.30 Item.31 Item.32 Item.33 Item.34 Item.35 Item.36
-1       0       0       0      21       6       0       5       0       0
-2       0       0       3       0       0       0      34       0       0
-3       0       0       9       0       2       1       9       0       0
-4       0       0      91       0       0       2      26       0       0
-5       0       0       0       0       0       0       1      38       0
-6       4       0       0       0       0       1      32       0       0
-  Item.37 Item.38 Item.39 Item.40 Item.41 Item.42 Item.43 Item.44 Item.45
-1       0       3      72       0       0      27      22       1       0
-2       0       0     260       0       0       0       2       0       0
-3       0       0      64       0       0       0       0       0       0
-4       0       0     128       0       0       0       0       0       0
-5       0       0       0       0       0       2       0       0       0
-6       0       0     104       0       0       1       0       0       0
-  Item.46 Item.47 Item.48 Item.49 Item.50 Item.51 Item.52 Item.53 Item.54
-1       0       0       0       0       5       0       0       0       0
-2       0       0       0     140       0       0       0       0       0
-3       0       0       0     100       0       2       0       0       0
-4       0       0       0     240       1       6       0       0       0
-5       0       0       0       0       0       0       0       0       0
-6       0    1224       0     360       0      30       0       0    1840
-  Item.55 Item.56 Item.57 Item.58 Item.59 Item.60 Item.61 Item.62 Item.63
-1       0       0       0       0       0       0       0      12       0
-2       0       0       0       0       0       0       0     252       0
-3       0       0       0       0       0       7       0     144       0
-4       0       0       0       0      10       0       0     824       0
-5       0       0       0       0       0       0       0       0       0
-6       0       0       0       0       0       1     560     476       0
-  Item.64 Item.65 Item.66 Item.67 Item.68 Item.69 Item.70 Item.71 Item.72
-1       0       0       0       0       0       0       0       0       0
-2       0       2       0       0       0       0       0       0       0
-3       0       0       0     190       0       0       0       0       0
-4       0       0       0       1       0       0       0       0       0
-5       0       0       0     999       0       0       0       0       0
-6       0       0       0     368       0       0       0       0       0
-  Item.73 Item.74 Item.75 Item.76 Item.77 Item.78 Item.79 Item.80
-1       2       0       0       0       0       0       0       0
-2       0       0       0       6       0       0       0       2
-3       0       0       0       0       0     220       0       0
-4       0       0       0       0       0    1000       0       0
-5       0       0       0       0       0       0       0       0
-6       0       0       0       0       0     368       0       0</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="modelo-de-pronostico---holt-winters.html#cb4-1" tabindex="-1"></a><span class="fu">accuracy</span>(NextYear_AVR)</span></code></pre></div>
+<pre><code>##                     ME     RMSE      MAE       MPE     MAPE      MASE
+## Training set -10.51627 3362.726 2031.977 -597.4377 686.9351 0.7053149
+##                    ACF1
+## Training set 0.09064362</code></pre>
 <p><br></p>
-<p>El propósito de trabajar con esta base de datos es llevar a cabo predicciones de ventas, considerando diversos factores temporales. Esto implica un análisis de patrones estacionales, tendencias históricas y otros elementos temporales que pueden influir en el comportamiento de las ventas.</p>
-<p>Un desafío significativo que presenta nuestra base de datos es la elevada cantidad de ceros, dado que la empresa se enfoca principalmente en la venta a mayoristas, lo que significa que no todos los ítems generan ventas de forma semanal. Este aspecto deberá ser considerado al aplicar técnicas de análisis de series de tiempo, ya que puede afectar la precisión de los modelos predictivos.</p>
-<p>A través de este análisis, se busca no solo comprender mejor las dinámicas de ventas de la empresa, sino también desarrollar habilidades en el manejo y la interpretación de series temporales en un contexto práctico.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="modelo-de-pronostico---holt-winters.html#cb6-1" tabindex="-1"></a><span class="fu">plot</span>(NextYear_AVR)</span></code></pre></div>
+<p><img src="Minilibro_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<br></p>
+</div>
+<div id="line-ups" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Line UPS<a href="modelo-de-pronostico---holt-winters.html#line-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="modelo-de-pronostico---holt-winters.html#cb7-1" tabindex="-1"></a><span class="co"># Suavizamiento exponencial</span></span>
+<span id="cb7-2"><a href="modelo-de-pronostico---holt-winters.html#cb7-2" tabindex="-1"></a>HW_Line_UPS <span class="ot">&lt;-</span> <span class="fu">HoltWinters</span>(Line_UPS_ts)</span>
+<span id="cb7-3"><a href="modelo-de-pronostico---holt-winters.html#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="modelo-de-pronostico---holt-winters.html#cb7-4" tabindex="-1"></a><span class="co"># Visualizar el suavizamiento</span></span>
+<span id="cb7-5"><a href="modelo-de-pronostico---holt-winters.html#cb7-5" tabindex="-1"></a><span class="fu">plot</span>(HW_Line_UPS)</span></code></pre></div>
+<p><img src="Minilibro_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<br>
+### Prediccion Line UPS</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="modelo-de-pronostico---holt-winters.html#cb8-1" tabindex="-1"></a>NextYear_Line_UPS <span class="ot">=</span> <span class="fu">forecast</span>(HW_Line_UPS, <span class="at">h=</span><span class="dv">12</span>)</span>
+<span id="cb8-2"><a href="modelo-de-pronostico---holt-winters.html#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="modelo-de-pronostico---holt-winters.html#cb8-3" tabindex="-1"></a>NextYear_Line_UPS</span></code></pre></div>
+<pre><code>##          Point Forecast      Lo 80     Hi 80       Lo 95     Hi 95
+## 2024.365       2395.203  -585.2597  5375.666 -2163.02140  6953.428
+## 2024.385       6497.811  3516.7642  9478.857  1938.69340 11056.928
+## 2024.404       2021.085  -960.6799  5002.849 -2539.13067  6581.300
+## 2024.423       7982.851  5000.2207 10965.481  3421.31173 12544.390
+## 2024.442       1763.836 -1219.8212  4747.493 -2799.27394  6326.946
+## 2024.462       2757.711  -227.1481  5742.571 -1807.23730  7322.660
+## 2024.481       7225.341  4239.0909 10211.592  2658.26534 11792.418
+## 2024.500       4319.481  1331.6375  7307.325  -250.03160  8888.995
+## 2024.519       1549.193 -1440.4608  4538.846 -3023.08766  6121.473
+## 2024.538       6050.868  3059.1764  9042.560  1475.47037 10626.266
+## 2024.558       4626.535  1632.5616  7620.508    47.64785  9205.422
+## 2024.577       6198.071  3201.5611  9194.582  1615.30429 10780.839</code></pre>
+<p><br></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="modelo-de-pronostico---holt-winters.html#cb10-1" tabindex="-1"></a><span class="fu">accuracy</span>(NextYear_Line_UPS)</span></code></pre></div>
+<pre><code>##                    ME     RMSE      MAE  MPE MAPE      MASE      ACF1
+## Training set 166.8915 2322.122 1699.773 -Inf  Inf 0.7570958 -0.104764</code></pre>
+<p><br></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="modelo-de-pronostico---holt-winters.html#cb12-1" tabindex="-1"></a><span class="fu">plot</span>(NextYear_Line_UPS)</span></code></pre></div>
+<p><img src="Minilibro_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<br></p>
+</div>
+<div id="online-ups" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Online UPS<a href="modelo-de-pronostico---holt-winters.html#online-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="modelo-de-pronostico---holt-winters.html#cb13-1" tabindex="-1"></a><span class="co"># Suavizamiento exponencial</span></span>
+<span id="cb13-2"><a href="modelo-de-pronostico---holt-winters.html#cb13-2" tabindex="-1"></a>HW_Online_UPS <span class="ot">&lt;-</span> <span class="fu">HoltWinters</span>(Online_UPS_ts)</span>
+<span id="cb13-3"><a href="modelo-de-pronostico---holt-winters.html#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="modelo-de-pronostico---holt-winters.html#cb13-4" tabindex="-1"></a><span class="co"># Visualizar el suavizamiento</span></span>
+<span id="cb13-5"><a href="modelo-de-pronostico---holt-winters.html#cb13-5" tabindex="-1"></a><span class="fu">plot</span>(HW_Online_UPS)</span></code></pre></div>
+<p><img src="Minilibro_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<br></p>
+</div>
+<div id="prediccion-online-ups" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> Prediccion Online UPS<a href="modelo-de-pronostico---holt-winters.html#prediccion-online-ups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="modelo-de-pronostico---holt-winters.html#cb14-1" tabindex="-1"></a>NextYear_Online_UPS <span class="ot">=</span> <span class="fu">forecast</span>(HW_Online_UPS, <span class="at">h=</span><span class="dv">12</span>)</span>
+<span id="cb14-2"><a href="modelo-de-pronostico---holt-winters.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="modelo-de-pronostico---holt-winters.html#cb14-3" tabindex="-1"></a>NextYear_Online_UPS</span></code></pre></div>
+<pre><code>##          Point Forecast      Lo 80    Hi 80       Lo 95    Hi 95
+## 2024.365       151.6897  -6.253334 309.6327  -89.863305 393.2426
+## 2024.385       312.4971 154.554145 470.4401   70.944174 554.0501
+## 2024.404       175.7021  17.759067 333.6451  -65.850904 417.2550
+## 2024.423       269.0596 111.116611 427.0026   27.506640 510.6126
+## 2024.442       137.4596 -20.483385 295.4026 -104.093355 379.0126
+## 2024.462       287.5091 129.566101 445.4521   45.956130 529.0621
+## 2024.481       231.9891  74.046138 389.9321   -9.563833 473.5421
+## 2024.500       334.9109 176.967899 492.8539   93.357928 576.4639
+## 2024.519       163.5365   5.593497 321.4795  -78.016474 405.0895
+## 2024.538       261.9819 104.038944 419.9249   20.428974 503.5349
+## 2024.558       280.1952 122.252189 438.1382   38.642219 521.7481
+## 2024.577       381.3215 223.378466 539.2645  139.768496 622.8744</code></pre>
+<p><br></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="modelo-de-pronostico---holt-winters.html#cb16-1" tabindex="-1"></a><span class="fu">accuracy</span>(NextYear_Online_UPS)</span></code></pre></div>
+<pre><code>##                    ME     RMSE      MAE  MPE MAPE      MASE        ACF1
+## Training set 8.597932 123.0382 90.70832 -Inf  Inf 0.8306248 -0.05999268</code></pre>
+<p><br></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="modelo-de-pronostico---holt-winters.html#cb18-1" tabindex="-1"></a><span class="fu">plot</span>(NextYear_Online_UPS)</span></code></pre></div>
+<p><img src="Minilibro_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<br>
+### Storage Battery</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="modelo-de-pronostico---holt-winters.html#cb19-1" tabindex="-1"></a><span class="co"># Suavizamiento exponencial</span></span>
+<span id="cb19-2"><a href="modelo-de-pronostico---holt-winters.html#cb19-2" tabindex="-1"></a>HW_Storage_Battery <span class="ot">&lt;-</span> <span class="fu">HoltWinters</span>(Storage_Battery_ts)</span>
+<span id="cb19-3"><a href="modelo-de-pronostico---holt-winters.html#cb19-3" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="modelo-de-pronostico---holt-winters.html#cb19-4" tabindex="-1"></a><span class="co"># Visualizar el suavizamiento</span></span>
+<span id="cb19-5"><a href="modelo-de-pronostico---holt-winters.html#cb19-5" tabindex="-1"></a><span class="fu">plot</span>(HW_Storage_Battery)</span></code></pre></div>
+<p><img src="Minilibro_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<br>
+### Prediccion Storage Battery</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="modelo-de-pronostico---holt-winters.html#cb20-1" tabindex="-1"></a>NextYear_Storage_Battery <span class="ot">=</span> <span class="fu">forecast</span>(HW_Storage_Battery, <span class="at">h=</span><span class="dv">12</span>)</span>
+<span id="cb20-2"><a href="modelo-de-pronostico---holt-winters.html#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="modelo-de-pronostico---holt-winters.html#cb20-3" tabindex="-1"></a>NextYear_Storage_Battery</span></code></pre></div>
+<pre><code>##          Point Forecast      Lo 80    Hi 80       Lo 95    Hi 95
+## 2024.365       1713.041  -34.32930 3460.411  -959.33117 4385.413
+## 2024.385       2244.157  496.22477 3992.090  -429.07475 4917.389
+## 2024.404       1252.645 -495.84996 3001.139 -1421.44704 3926.736
+## 2024.423       1603.512 -145.54396 3352.569 -1071.43849 4278.463
+## 2024.442       1572.519 -177.09965 3322.137 -1103.29156 4248.329
+## 2024.462       2460.562  710.38227 4210.742  -216.10691 5137.231
+## 2024.481       3856.245 2105.50392 5606.986  1178.71757 6533.772
+## 2024.500       1818.996   67.69353 3570.298  -859.38990 4497.382
+## 2024.519       2640.096  888.23229 4391.959   -39.14813 5319.339
+## 2024.538       1966.975  214.55038 3719.399  -713.12693 4647.076
+## 2024.558       2018.323  265.33853 3771.308  -662.63557 4699.282
+## 2024.577       1626.913 -126.63268 3380.458 -1054.90348 4308.729</code></pre>
+<p><br></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="modelo-de-pronostico---holt-winters.html#cb22-1" tabindex="-1"></a><span class="fu">accuracy</span>(NextYear_Storage_Battery)</span></code></pre></div>
+<pre><code>##                    ME    RMSE      MAE  MPE MAPE      MASE       ACF1
+## Training set 118.4842 1363.04 972.5784 -Inf  Inf 0.8740217 0.05918401</code></pre>
+<p><br></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="modelo-de-pronostico---holt-winters.html#cb24-1" tabindex="-1"></a><span class="fu">plot</span>(NextYear_Storage_Battery)</span></code></pre></div>
+<p><img src="Minilibro_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<br></p>
+<p>Conclusión:
+Nuestros valores de MAPE (Mean Absolute Percentage Error) son extremadamente altos y sugiriendo que el modelo de pronóstico tiene un desempeño muy deficiente.</p>
+<p>La MAPE se expresa como un porcentaje y mide el error absoluto medio en relación con los valores reales. lo que nos indica que que errores de pronóstico son mucho mayores que los valores reales.</p>
+<p>Si el valor real es cero en algún punto, el cálculo del MAPE se vuelve problemático, ya que implica dividir por cero. Por esta razon el modelo de Holt-Winters no es adecuado para el pronostico de ventas de nuestra base de datos.</p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="estructura-de-los-datos-en-series-de-tiempo.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="preprocesamiento-y-visualización.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="graficas-de-series-de-tiempo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -384,7 +450,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-actividad4.Rmd",
 "text": "Edit"
 },
 "history": {

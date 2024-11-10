@@ -4,3 +4,6 @@
 _book
 _bookdown_files
 rsconnect
+placeholder.Rcheck/
+placeholder*.tar.gz
+placeholder*.tgz

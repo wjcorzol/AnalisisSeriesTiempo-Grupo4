@@ -1,0 +1,135 @@
+# Modelo de pronostico - Holt Winters
+
+```{r setup, include=FALSE}
+load("AVR_ts.RData")
+load("Line_UPS_ts.RData")
+load("Online_UPS_ts.RData")
+load("Storage_Battery_ts.RData")
+
+library(tseries)
+library(forecast)
+library(ggplot2)
+```
+
+## Suavizado exponecial
+
+### AVR
+```{r}
+# Suavizamiento exponencial
+HW_AVR <- HoltWinters(AVR_ts)
+
+# Visualizar el suavizamiento
+plot(HW_AVR)
+```
+<br>
+
+### Prediccion AVR
+
+```{r}
+NextYear_AVR = forecast(HW_AVR, h=12)
+
+NextYear_AVR
+```
+<br>
+
+```{r}
+accuracy(NextYear_AVR)
+```
+<br>
+```{r}
+plot(NextYear_AVR)
+```
+<br>
+
+
+
+### Line UPS
+
+
+```{r}
+# Suavizamiento exponencial
+HW_Line_UPS <- HoltWinters(Line_UPS_ts)
+
+# Visualizar el suavizamiento
+plot(HW_Line_UPS)
+
+```
+<br>
+### Prediccion Line UPS
+```{r}
+NextYear_Line_UPS = forecast(HW_Line_UPS, h=12)
+
+NextYear_Line_UPS
+```
+<br>
+
+```{r}
+accuracy(NextYear_Line_UPS)
+```
+<br>
+```{r}
+plot(NextYear_Line_UPS)
+```
+<br>
+
+
+### Online UPS
+
+```{r}
+# Suavizamiento exponencial
+HW_Online_UPS <- HoltWinters(Online_UPS_ts)
+
+# Visualizar el suavizamiento
+plot(HW_Online_UPS)
+```
+<br>
+
+### Prediccion Online UPS
+```{r}
+NextYear_Online_UPS = forecast(HW_Online_UPS, h=12)
+
+NextYear_Online_UPS
+```
+<br>
+```{r}
+accuracy(NextYear_Online_UPS)
+```
+<br>
+```{r}
+plot(NextYear_Online_UPS)
+```
+<br>
+### Storage Battery
+
+```{r}
+# Suavizamiento exponencial
+HW_Storage_Battery <- HoltWinters(Storage_Battery_ts)
+
+# Visualizar el suavizamiento
+plot(HW_Storage_Battery)
+```
+<br>
+### Prediccion Storage Battery
+```{r}
+NextYear_Storage_Battery = forecast(HW_Storage_Battery, h=12)
+
+NextYear_Storage_Battery
+```
+<br>
+
+```{r}
+accuracy(NextYear_Storage_Battery)
+```
+<br>
+```{r}
+plot(NextYear_Storage_Battery)
+```
+<br>
+
+Conclusión: 
+Nuestros valores de MAPE (Mean Absolute Percentage Error) son extremadamente altos y sugiriendo que el modelo de pronóstico tiene un desempeño muy deficiente. 
+
+La MAPE se expresa como un porcentaje y mide el error absoluto medio en relación con los valores reales. lo que nos indica que que errores de pronóstico son mucho mayores que los valores reales. 
+
+Si el valor real es cero en algún punto, el cálculo del MAPE se vuelve problemático, ya que implica dividir por cero. Por esta razon el modelo de Holt-Winters no es adecuado para el pronostico de ventas de nuestra base de datos. 
+
