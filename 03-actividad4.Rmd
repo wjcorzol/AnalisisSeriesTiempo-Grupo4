@@ -11,7 +11,7 @@ library(forecast)
 library(ggplot2)
 ```
 
-## Suavizado exponecial
+## Suavizado exponecial (Holt - Winter)
 
 ### AVR
 ```{r}
@@ -20,6 +20,40 @@ HW_AVR <- HoltWinters(AVR_ts)
 
 # Visualizar el suavizamiento
 plot(HW_AVR)
+```
+<br>
+
+### Line UPS
+
+```{r}
+# Suavizamiento exponencial
+HW_Line_UPS <- HoltWinters(Line_UPS_ts)
+
+# Visualizar el suavizamiento
+plot(HW_Line_UPS)
+
+```
+<br>
+
+### Online UPS
+
+```{r}
+# Suavizamiento exponencial
+HW_Online_UPS <- HoltWinters(Online_UPS_ts)
+
+# Visualizar el suavizamiento
+plot(HW_Online_UPS)
+```
+<br>
+
+### Storage Battery
+
+```{r}
+# Suavizamiento exponencial
+HW_Storage_Battery <- HoltWinters(Storage_Battery_ts)
+
+# Visualizar el suavizamiento
+plot(HW_Storage_Battery)
 ```
 <br>
 
@@ -43,17 +77,7 @@ plot(NextYear_AVR)
 
 
 
-### Line UPS
 
-
-```{r}
-# Suavizamiento exponencial
-HW_Line_UPS <- HoltWinters(Line_UPS_ts)
-
-# Visualizar el suavizamiento
-plot(HW_Line_UPS)
-
-```
 <br>
 ### Prediccion Line UPS
 ```{r}
@@ -73,16 +97,6 @@ plot(NextYear_Line_UPS)
 <br>
 
 
-### Online UPS
-
-```{r}
-# Suavizamiento exponencial
-HW_Online_UPS <- HoltWinters(Online_UPS_ts)
-
-# Visualizar el suavizamiento
-plot(HW_Online_UPS)
-```
-<br>
 
 ### Prediccion Online UPS
 ```{r}
@@ -99,16 +113,7 @@ accuracy(NextYear_Online_UPS)
 plot(NextYear_Online_UPS)
 ```
 <br>
-### Storage Battery
 
-```{r}
-# Suavizamiento exponencial
-HW_Storage_Battery <- HoltWinters(Storage_Battery_ts)
-
-# Visualizar el suavizamiento
-plot(HW_Storage_Battery)
-```
-<br>
 ### Prediccion Storage Battery
 ```{r}
 NextYear_Storage_Battery = forecast(HW_Storage_Battery, h=12)
